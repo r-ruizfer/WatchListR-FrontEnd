@@ -1,0 +1,43 @@
+a {
+  text-decoration: none;
+}
+
+.navbar {
+  display: flex;
+  border: 2px solid black;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.navbar img {
+  width: 100px;
+}
+
+.series-list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar-body {
+  display: flex;
+}
+
+.series-list {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-bottom: 50px;
+
+}
+
+.series-card {
+  border: 2px solid black;
+}
+
+.series-card img {
+  max-width: 300px;
+}
