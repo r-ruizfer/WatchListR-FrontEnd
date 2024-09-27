@@ -24,7 +24,6 @@ function SeriesList() {
     axios
     .request(options)
     .then((response) => {
-      console.log(response)
       setSeries(response.data.results)
     })
     .catch((error) => {

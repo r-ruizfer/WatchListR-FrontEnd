@@ -22,7 +22,6 @@ function Sidebar({ type }) {
       axios
       .request(options)
       .then((response) => {
-        console.log(response.data.genres);
         setGenres(response.data.genres)
       })
       .catch((error) => {
@@ -39,7 +38,7 @@ function Sidebar({ type }) {
         {genres && genres.map((genre) => {
           return (
             <div key={genre.id}>
-              <h5>{genre.name}</h5>
+              <button>{genre.name}</button>
             </div>
           
           )
