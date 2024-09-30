@@ -27,7 +27,7 @@ function SeriesDetails() {
         console.log(response.data);
         setSerie(response.data);
         return axios.get(
-          `http://localhost:5000/personalWatchlist?serieApiId=${response.data.id}`
+          `http://localhost:5000/personalWatchlist?id=${response.data.id}`
         );
       })
       .then((response) => {
@@ -39,11 +39,11 @@ function SeriesDetails() {
   }, []);
 
   function handleDelete() {
-    axios.get(`http://localhost:5000/personalWatchlist/${serie.id}`)
-      .then((response)=>{
-        console.log(response)
-      })
-    //axios.delete(`http://localhost:5000/personalWatchlist/${.id}}`)
+    
+    axios.delete(`http://localhost:5000/personalWatchlist/${serie.id}`)
+    .then(
+      navigate("/mylist")
+    )
   }
 
   if (serie === null) {
@@ -82,11 +82,18 @@ function SeriesDetails() {
             image={`${import.meta.env.VITE_IMAGE_URL}/${serie.poster_path}`}
             id={serie.id}
             setSerieInWatchlist={setSerieInWatchlist}
+            type={"add"}
           />
         ) : (
           <div>
             <button onClick={handleDelete}> Borrar de mi lista</button>
-            <button>Actualizar Estado</button>
+            <AddToListForm
+            name={serie.name}
+            image={`${import.meta.env.VITE_IMAGE_URL}/${serie.poster_path}`}
+            id={serie.id}
+            setSerieInWatchlist={setSerieInWatchlist}
+            type={"update"}
+          />
           </div>
         )}
       </div>

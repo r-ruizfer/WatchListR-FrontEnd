@@ -41,78 +41,167 @@ function AddToListForm(props) {
     const newSerie = {
       name: props.name,
       poster_path,
-      serieApiId: props.id,
+      id: props.id,
       rating,
       personalWatchlist,
     };
     try {
       await axios.post("http://localhost:5000/personalWatchlist", newSerie);
       const response = await axios.get(
-        `http://localhost:5000/personalWatchlist?serieApiId=${props.id}`
+        `http://localhost:5000/personalWatchlist?id=${props.id}`
       );
-      
-      props.setSerieInWatchlist(response.data)
-      closeModal();
+
+      props.setSerieInWatchlist(response.data);
+      navigate("/mylist");
     } catch (error) {
       console.log(error);
     }
   };
 
-  return (
-    <>
-      <button
-        style={{
-          backgroundColor: "#22223b",
-          borderRadius: "15px",
-          color: "#9a8c98",
-          border: "none",
-          padding: "10px",
-          fontSize: "15px",
-          fontWeight: "bold",
-          margin: "20px",
-          width: "100px",
-        }}
-        onClick={openModal}
-      >
-        Añadir a Lista
-      </button>
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
-        <form onSubmit={handleSubmit}>
-          <img src={props.image} height={400} alt="imagen serie" />
-          <h1>{props.name}</h1>
-          <label>
-            Rating
-            <select name="rating" onChange={handleRating}>
-              <option value="-">---</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-          </label>
-          <label>
-            Añadir a lista
-            <select name="personalWatchlist" onChange={handlePersonalWatchlist}>
-              <option value="-">---</option>
-              <option value="wantToWatch">Want to Watch</option>
-              <option value="watching">Watching</option>
-              <option value="watched">Watched</option>
-            </select>
-          </label>
-          <button type="submit"> Submit</button>
-        </form>
+  const handleUpdate = async (e) => {
+    e.preventDefault();
 
-        <button onClick={closeModal}>close</button>
-      </Modal>
-    </>
-  );
+    const updatedSerie = {
+      name: props.name,
+      poster_path,
+      id: props.id,
+      rating,
+      personalWatchlist,
+    };
+    try {
+      await axios.patch(
+        `http://localhost:5000/personalWatchlist/${props.id}`, updatedSerie);
+      const response = await axios.get(
+        `http://localhost:5000/personalWatchlist?id=${props.id}`
+      );
+
+      props.setSerieInWatchlist(response.data);
+      navigate("/mylist");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  if (props.type === "add"){
+
+    return (
+      <>
+        <button
+          style={{
+            backgroundColor: "#22223b",
+            borderRadius: "15px",
+            color: "#9a8c98",
+            border: "none",
+            padding: "10px",
+            fontSize: "15px",
+            fontWeight: "bold",
+            margin: "20px",
+            width: "100px",
+          }}
+          onClick={openModal}
+        >
+          Añadir a Lista
+        </button>
+        <Modal
+          isOpen={modalIsOpen}
+          onAfterOpen={afterOpenModal}
+          onRequestClose={closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <form onSubmit={handleSubmit}>
+            <img src={props.image} height={400} alt="imagen serie" />
+            <h1>{props.name}</h1>
+            <label>
+              Rating
+              <select name="rating" onChange={handleRating}>
+                <option value="-">---</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </label>
+            <label>
+              Añadir a lista
+              <select
+                name="personalWatchlist"
+                onChange={handlePersonalWatchlist}
+              >
+                <option value="-">---</option>
+                <option value="wantToWatch">Want to Watch</option>
+                <option value="watching">Watching</option>
+                <option value="watched">Watched</option>
+              </select>
+            </label>
+            <button type="submit"> Submit</button>
+          </form>
+
+          <button onClick={closeModal}>close</button>
+        </Modal>
+      </>
+    );
+  } else if (props.type === "update"){
+    return (
+      <>
+        <button
+          style={{
+            backgroundColor: "#22223b",
+            borderRadius: "15px",
+            color: "#9a8c98",
+            border: "none",
+            padding: "10px",
+            fontSize: "15px",
+            fontWeight: "bold",
+            margin: "20px",
+            width: "100px",
+          }}
+          onClick={openModal}
+        >
+          Actualizar Estado
+        </button>
+        <Modal
+          isOpen={modalIsOpen}
+          onAfterOpen={afterOpenModal}
+          onRequestClose={closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <form onSubmit={handleUpdate}>
+            <img src={props.image} height={400} alt="imagen serie" />
+            <h1>{props.name}</h1>
+            <label>
+              Rating
+              <select name="rating" onChange={handleRating}>
+                <option value="-">---</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </label>
+            <label>
+              Añadir a lista
+              <select
+                name="personalWatchlist"
+                onChange={handlePersonalWatchlist}
+              >
+                <option value="-">---</option>
+                <option value="wantToWatch">Want to Watch</option>
+                <option value="watching">Watching</option>
+                <option value="watched">Watched</option>
+              </select>
+            </label>
+            <button type="submit"> Submit</button>
+          </form>
+
+          <button onClick={closeModal}>close</button>
+        </Modal>
+      </>
+    )
+  }
 }
 
 export default AddToListForm;
