@@ -9,6 +9,8 @@ function SeriesList() {
 
   const [series, setSeries] = useState(null)
   const [ searchValue, setSearchValue ] = useState("")
+  const [ filterValue, setFilterValue ] = useState("")
+
 
   const options = {
     method: 'GET',
@@ -40,10 +42,11 @@ function SeriesList() {
       <Search searchValue={searchValue} setSearchValue={setSearchValue} />
 
       <div className="sidebar-body">
-        <Sidebar type={"seriesList"}/>
+        <Sidebar type={"seriesList"} filterValue={filterValue} setFilterValue={setFilterValue}/>
     
         <div className="series-list">
           {series
+         // .filter((serie) => serie.genres.some((genre) => genre.id === filterValue))
           .filter((serie) => serie.name.toLowerCase().includes(searchValue))
           .map((serie) => {
             return (

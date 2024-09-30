@@ -1,21 +1,21 @@
 import { useRef, useState } from "react";
 import Modal from "react-modal";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 Modal.setAppElement("#root");
 
 function AddToListForm(props) {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [name, setName] = useState(props.name);
+  //const [name, setName] = useState(props.name);
   const [poster_path, setPosterPath] = useState(props.image);
-  const [id, setId] = useState(props.id);
+  // const [id, setId] = useState(props.id);
   const [rating, setRating] = useState("");
   const [personalWatchlist, setPersonalWatchlist] = useState(null);
- 
+
   const handleRating = (e) => setRating(e.target.value);
   const handlePersonalWatchlist = (e) => setPersonalWatchlist(e.target.value);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const customStyles = {
     content: {
       top: "50%",
@@ -39,21 +39,23 @@ function AddToListForm(props) {
     e.preventDefault();
 
     const newSerie = {
-      name,
+      name: props.name,
       poster_path,
-      id,
+      serieApiId: props.id,
       rating,
       personalWatchlist,
     };
     try {
       await axios.post("http://localhost:5000/personalWatchlist", newSerie);
-      console.log(newSerie);
-      navigate (`/series/${id}`)
-      closeModal()
+      const response = await axios.get(
+        `http://localhost:5000/personalWatchlist?serieApiId=${props.id}`
+      );
+      
+      props.setSerieInWatchlist(response.data)
+      closeModal();
     } catch (error) {
       console.log(error);
     }
-
   };
 
   return (
@@ -81,7 +83,7 @@ function AddToListForm(props) {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <form onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmit}>
           <img src={props.image} height={400} alt="imagen serie" />
           <h1>{props.name}</h1>
           <label>
@@ -104,10 +106,7 @@ function AddToListForm(props) {
               <option value="watched">Watched</option>
             </select>
           </label>
-          <button type="submit" >
-            {" "}
-            Submit
-          </button>
+          <button type="submit"> Submit</button>
         </form>
 
         <button onClick={closeModal}>close</button>

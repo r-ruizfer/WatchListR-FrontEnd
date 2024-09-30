@@ -2,11 +2,18 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-function Sidebar({ type }) {
+function Sidebar({ type, filterValue, setFilterValue }) {
 
   if (type === "seriesList") {
 
     const [genres, setGenres] = useState(null)
+
+
+    const handleFilter = (event) => {
+      const selectedGenre = (event.target.value)
+      setFilterValue(selectedGenre);
+      console.log(selectedGenre)
+    };
 
     const options = {
       method: 'GET',
@@ -38,7 +45,7 @@ function Sidebar({ type }) {
         {genres && genres.map((genre) => {
           return (
             <div key={genre.id}>
-              <button>{genre.name}</button>
+              <button value={genre.id} onClick={handleFilter}>{genre.name}</button>
             </div>
           
           )

@@ -19,7 +19,7 @@ function SeriesCard({ serie, type }) {
   } else if (type === "myList") {
     return (
       <div className="series-card">
-        <Link to={`/series/${serie.id}`} key={serie.id}>
+        <Link to={`/series/${serie.serieApiId}`} key={serie.id}>
           <div>
             <div>
               <img
