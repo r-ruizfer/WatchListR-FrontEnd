@@ -36,7 +36,7 @@ function SeriesList() {
   }
 
   return (
-    <div className="series-list-container">
+    <div key={series.id} className="series-list-container">
       <Search searchValue={searchValue} setSearchValue={setSearchValue} />
 
       <div className="sidebar-body">
@@ -48,7 +48,7 @@ function SeriesList() {
           .map((serie) => {
             return (
             <Link to={`/series/${serie.id}`} key={serie.id}>
-              <SeriesCard serie={serie} />
+              <SeriesCard serie={serie} type={"seriesList"} />
             </Link>
             )
           })}
