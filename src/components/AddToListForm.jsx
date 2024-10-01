@@ -59,7 +59,6 @@ function AddToListForm(props) {
     }
   };
 
-
   const handleUpdate = async (e) => {
     e.preventDefault();
 
@@ -141,7 +140,6 @@ function AddToListForm(props) {
                 <option value="5">5</option>
               </select>
             </label>
-            
             <button type="submit"> Submit</button>
           </form>
 

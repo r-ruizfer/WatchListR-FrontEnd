@@ -55,9 +55,15 @@ function Sidebar({ type, filterValue, setFilterValue, watchlistFilter, setWatchl
   } else if (type === "seriesDetails") {
 
     return (
-      <Link to="/series">
-        Volver al listado
-      </Link>
+      <>
+        <Link to="/series">
+          Volver al listado
+        </Link>
+
+        <Link to="/mylist">
+          Volver a mis series
+        </Link>
+      </>
     )
   } else if (type === "myList") {
 

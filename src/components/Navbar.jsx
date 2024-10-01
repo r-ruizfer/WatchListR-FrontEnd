@@ -10,7 +10,7 @@ function Navbar({ searchValue, setSearchValue }) {
       </Link>
 
       <Link to="/series">
-        <h1>Listado de series</h1>
+        <h1>Series más populares</h1>
       </Link>
 
       <Link to="/mylist">

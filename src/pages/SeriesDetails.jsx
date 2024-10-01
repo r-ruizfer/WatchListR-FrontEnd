@@ -32,7 +32,7 @@ function SeriesDetails() {
       })
       .then((response) => {
         setSerieInWatchlist(response.data);
-        console.log(serieInWatchlist)
+        console.log(response.data[0].rating)
       })
       .catch((error) => {
         console.error(error);
@@ -79,7 +79,8 @@ function SeriesDetails() {
         <p>Número de temporadas: {serie.number_of_seasons}</p>
         <p>Idioma original: {serie.original_language}</p>
 
-        <p>Rating: {serie.rating}</p>
+        {serieInWatchlist !== false ? (<p>Rating: {serieInWatchlist.rating}</p>) : (null)}
+        
 
         <p>{serie.overview}</p>
         {serieInWatchlist.length === 0 ? (
