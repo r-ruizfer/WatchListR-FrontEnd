@@ -1,7 +1,8 @@
 import logo from "../assets/logo.png"
 import { Link } from "react-router-dom"
+import Search from "./Search"
 
-function Navbar() {
+function Navbar({ searchValue, setSearchValue }) {
   return (
     <div className="navbar">
       <Link to="/">
@@ -19,6 +20,8 @@ function Navbar() {
       <Link to="/about">
         <h1>About</h1>
       </Link>
+
+      <Search type="navbar" searchValue={searchValue} setSearchValue={setSearchValue}/>
     </div>
   )
 }

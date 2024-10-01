@@ -2,8 +2,16 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function SeriesCard({ serie, type }) {
-  
- 
+
+  let estadoWatchlist
+
+  if (serie.personalWatchlist === "wantToWatch") {
+    estadoWatchlist = "Quiero verla"
+  } else if (serie.personalWatchlist === "watching") {
+    estadoWatchlist = "Viendo"
+  } else if (serie.personalWatchlist === "watched") {
+    estadoWatchlist = "Vista"
+  }
 
   if (type === "seriesList") {
     return (
@@ -29,7 +37,7 @@ function SeriesCard({ serie, type }) {
 
               <h3>{serie.name}</h3>
               <p> Rating: {serie.rating}</p>
-              <p>{serie.personalWatchlist}</p>
+              <p>{estadoWatchlist}</p>
             </div>
           </div>
         </Link>

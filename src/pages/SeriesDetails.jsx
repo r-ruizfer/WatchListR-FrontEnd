@@ -9,14 +9,14 @@ function SeriesDetails() {
   const [serie, setSerie] = useState(null);
   const [serieInWatchlist, setSerieInWatchlist] = useState(false);
   const navigate = useNavigate();
+  
   const options = {
     method: "GET",
     url: `https://api.themoviedb.org/3/tv/${params.seriesId}`,
     params: { language: "en-US" },
     headers: {
       accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMjRiOGNiZmZhOTM0YTUzMDgyOTJjYjcxODY3NjI4YyIsIm5iZiI6MTcyNzQzNTYyNy45NDEyMzIsInN1YiI6IjY2ZjY5MjllZTBiZjdhYzI4NTk2NmVkMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Gmx5VB8Yp0j_Lv1Bzry-yDc8h1mtDyF4EafTrceidew",
+      Authorization: `${import.meta.env.VITE_API_KEY}`
     },
   };
 
@@ -32,6 +32,7 @@ function SeriesDetails() {
       })
       .then((response) => {
         setSerieInWatchlist(response.data);
+        console.log(serieInWatchlist)
       })
       .catch((error) => {
         console.error(error);
@@ -60,9 +61,11 @@ function SeriesDetails() {
           alt="TV Show Image"
         />
         <h1>{serie.name}</h1>
+        
         {serie.genres.map((genre) => {
           return <h5 key={genre.name}>{genre.name}</h5>;
         })}
+
         <p>Fecha del primer episodio: {serie.first_air_date}</p>
 
         {serie.next_episode_to_air === null ? (
@@ -75,12 +78,16 @@ function SeriesDetails() {
         <p>Número de episodios: {serie.number_of_episodes}</p>
         <p>Número de temporadas: {serie.number_of_seasons}</p>
         <p>Idioma original: {serie.original_language}</p>
+
+        <p>Rating: {serie.rating}</p>
+
         <p>{serie.overview}</p>
         {serieInWatchlist.length === 0 ? (
           <AddToListForm
             name={serie.name}
             image={`${import.meta.env.VITE_IMAGE_URL}/${serie.poster_path}`}
             id={serie.id}
+            genres={serie.genres}
             setSerieInWatchlist={setSerieInWatchlist}
             type={"add"}
           />
