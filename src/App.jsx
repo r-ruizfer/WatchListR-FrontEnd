@@ -1,7 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import HomePage from "./pages/Homepage.jsx";
+import HomePage from "./pages/HomePage.jsx";
 import About from "./pages/About.jsx";
 import SeriesList from "./pages/SeriesList.jsx";
 import SeriesDetails from "./pages/SeriesDetails.jsx";
