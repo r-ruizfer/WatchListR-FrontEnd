@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Sidebar from "../components/Sidebar";
-import Search from "../components/Search";
-import SeriesCard from "../components/SeriesCard";
 
+import SeriesCard from "../components/SeriesCard";
+import Button from 'react-bootstrap/Button';
 function SeriesList({
   searchValue,
   setSearchValue,
@@ -57,12 +56,18 @@ function SeriesList({
 
   return (
     <div key={series.id} className="series-list-container">
-      <div>
-        <button onClick={handleDecrease} disabled={pageNumber === 1}>
+      <div className="paginado">
+        <Button
+          variant="secondary"
+          onClick={handleDecrease}
+          disabled={pageNumber === 1}
+        >
           Página anterior
-        </button>
+        </Button>{" "}
         <h3>{pageNumber}</h3>
-        <button onClick={handleIncrease}>Página siguiente</button>
+        <Button variant="secondary" onClick={handleIncrease}>
+          Página siguiente
+        </Button>{" "}
       </div>
 
       <div className="sidebar-body">
@@ -77,12 +82,18 @@ function SeriesList({
         </div>
       </div>
 
-      <div>
-        <button onClick={handleDecrease} disabled={pageNumber === 1}>
+      <div className="paginado">
+        <button
+          className="boton-paginado"
+          onClick={handleDecrease}
+          disabled={pageNumber === 1}
+        >
           Página anterior
         </button>
         <h3>{pageNumber}</h3>
-        <button onClick={handleIncrease}>Página siguiente</button>
+        <button className="boton-paginado" onClick={handleIncrease}>
+          Página siguiente
+        </button>
       </div>
     </div>
   );

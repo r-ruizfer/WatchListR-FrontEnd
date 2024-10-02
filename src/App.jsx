@@ -7,7 +7,7 @@ import SeriesList from "./pages/SeriesList.jsx";
 import SeriesDetails from "./pages/SeriesDetails.jsx";
 import MyList from "./pages/MyList.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
-import Navbar from "./components/Navbar.jsx";
+import MyNavbar from "./components/myNavbar.jsx";
 import SearchResults from "./pages/SearchResults.jsx";
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
 
   return (
     <>
-      <Navbar searchValue={searchValue} setSearchValue={setSearchValue} />
+      <MyNavbar searchValue={searchValue} setSearchValue={setSearchValue} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route

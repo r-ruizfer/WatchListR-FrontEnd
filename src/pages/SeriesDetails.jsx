@@ -74,6 +74,7 @@ function SeriesDetails() {
         <p>Número de episodios: {serie.number_of_episodes}</p>
         <p>Número de temporadas: {serie.number_of_seasons}</p>
         <p>Idioma original: {serie.original_language}</p>
+        <p>Pagina Original Serie: <a href={serie.homepage}>{serie.homepage}</a> </p>
 
         {serieInWatchlist.length > 0 ? (
           <div>

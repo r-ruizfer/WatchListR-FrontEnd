@@ -2,7 +2,8 @@ import logo from "../assets/logo.png"
 import { Link } from "react-router-dom"
 import Search from "./Search"
 
-function Navbar({ searchValue, setSearchValue }) {
+
+function MyNavbar({ searchValue, setSearchValue }) {
   return (
     <div className="navbar">
       <Link to="/">
@@ -26,4 +27,4 @@ function Navbar({ searchValue, setSearchValue }) {
   )
 }
 
-export default Navbar
+export default MyNavbar
