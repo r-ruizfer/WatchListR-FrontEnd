@@ -1,5 +1,21 @@
+/*
+Azul claro : #8ecae6
+Azul medio : #219ebc
+Azul oscuro : #023047
+Amarillo : #ffb703
+Naranja : #fb8500
+*/
+
+body {
+background-color: #023047 ;
+color: aliceblue;
+}
+
+
 a {
   text-decoration: none;
+color: aliceblue;
+
 }
 
 .navbar {
@@ -7,6 +23,7 @@ a {
   border: 2px solid black;
   align-items: center;
   justify-content: space-around;
+  background-color:#8ecae6 ;
 }
 
 .navbar img {
@@ -31,7 +48,6 @@ a {
   flex-wrap: wrap;
   gap: 20px;
   padding-bottom: 50px;
-
 }
 
 .series-card {
