@@ -2,6 +2,7 @@ import TeamInfo from "../components/TeamInfo"
 
 function About() {
   return (
+    
     <div className="about">
       
       <h2>Miembros del equipo</h2>

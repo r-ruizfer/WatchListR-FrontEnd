@@ -23,6 +23,7 @@ function MyList({searchValue, setSearchValue, filterValue, setFilterValue}) {
   if (series === null) {
     return <h1>...cargando</h1>
   }
+  
 
   return (
     <div className="series-list-container">

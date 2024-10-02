@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "../components/Sidebar";
 import AddToListForm from "../components/AddToListForm";
+import { Button } from "react-bootstrap";
 
 function SeriesDetails() {
   const params = useParams();
@@ -51,60 +52,100 @@ function SeriesDetails() {
     <div className="sidebar-body">
       <Sidebar type={"seriesDetails"} />
 
-      <div>
-        <img
-          src={`${import.meta.env.VITE_IMAGE_URL}/${serie.poster_path}`}
-          alt="TV Show Image"
-        />
-        <h1>{serie.name}</h1>
-
-        {serie.genres.map((genre) => {
-          return <h5 key={genre.name}>{genre.name}</h5>;
-        })}
-
-        <p>Fecha del primer episodio: {serie.first_air_date}</p>
-
-        {serie.next_episode_to_air === null ? (
-          <p>Fecha del final: {serie.last_air_date}</p>
-        ) : (
-          <p>Serie en emisión</p>
-        )}
-
-        <p>Fecha del último episodio: {serie.last_air_date}</p>
-        <p>Número de episodios: {serie.number_of_episodes}</p>
-        <p>Número de temporadas: {serie.number_of_seasons}</p>
-        <p>Idioma original: {serie.original_language}</p>
-        <p>Pagina Original Serie: <a href={serie.homepage}>{serie.homepage}</a> </p>
-
-        {serieInWatchlist.length > 0 ? (
-          <div>
-            <p>Rating: {serieInWatchlist[0].rating}</p>
-            <p>
-              Estado:{" "}
-              {serieInWatchlist[0].personalWatchlist === "wantToWatch"
-                ? "Quiero Verla"
-                : serieInWatchlist[0].personalWatchlist === "watching"
-                ? "Viendo"
-                : serieInWatchlist[0].personalWatchlist === "watched"
-                ? "Vista"
-                : ""}
-            </p>
-          </div>
-        ) : null}
-
-        <p>{serie.overview}</p>
-        {serieInWatchlist.length === 0 ? (
-          <AddToListForm
-            name={serie.name}
-            image={`${import.meta.env.VITE_IMAGE_URL}/${serie.poster_path}`}
-            id={serie.id}
-            genres={serie.genres}
-            setSerieInWatchlist={setSerieInWatchlist}
-            type={"add"}
+      <div className="series-details">
+        <div className="details-main-info">
+          <img
+            src={`${import.meta.env.VITE_IMAGE_URL}/${serie.poster_path}`}
+            alt="TV Show Image"
           />
+          <div className="details-main-info-text">
+            <h1>{serie.name}</h1>
+            <div className="details-main-info-genres">
+              {serie.genres.map((genre) => {
+                return <h5 key={genre.name}>{genre.name}</h5>;
+              })}
+            </div>
+            {serieInWatchlist.length > 0 ? (
+              <div>
+                <p>Rating: {serieInWatchlist[0].rating}</p>
+                <p
+                  style={{
+                    textAlign: "center",
+                    width: "200px",
+                    padding: "10px",
+                    borderRadius: "5px",
+                    fontWeight: "bold",
+                    backgroundColor:
+                      serieInWatchlist[0].personalWatchlist === "wantToWatch"
+                        ? "#50fa7b"
+                        : serieInWatchlist[0].personalWatchlist === "watching"
+                        ? "#f1fa8c"
+                        : serieInWatchlist[0].personalWatchlist === "watched"
+                        ? "	#ff5555"
+                        : "",
+                    color:
+                      serieInWatchlist[0].personalWatchlist === "watching" ||
+                      serieInWatchlist[0].personalWatchlist === "watched"
+                        ? "black"
+                        : "white",
+                  }}
+                >
+                  {serieInWatchlist[0].personalWatchlist === "wantToWatch"
+                    ? "Quiero Verla"
+                    : serieInWatchlist[0].personalWatchlist === "watching"
+                    ? "Viendo"
+                    : serieInWatchlist[0].personalWatchlist === "watched"
+                    ? "Vista"
+                    : ""}
+                </p>
+              </div>
+            ) : null}
+          </div>
+        </div>
+        <div className="details-general-info">
+          <p>Fecha del primer episodio: {serie.first_air_date}</p>
+
+          {serie.next_episode_to_air === null ? (
+            <p>Fecha del final: {serie.last_air_date}</p>
+          ) : (
+            <p>Serie en emisión</p>
+          )}
+
+          <p>Fecha del último episodio: {serie.last_air_date}</p>
+          <p>Número de episodios: {serie.number_of_episodes}</p>
+          <p>Número de temporadas: {serie.number_of_seasons}</p>
+          <p>Idioma original: {serie.original_language}</p>
+          <p>
+            Pagina Original Serie: <a href={serie.homepage}>{serie.homepage}</a>{" "}
+          </p>
+
+          <p>{serie.overview}</p>
+        </div>
+        {serieInWatchlist.length === 0 ? (
+          <div className="add-to-list-form">
+            <AddToListForm
+              name={serie.name}
+              image={`${import.meta.env.VITE_IMAGE_URL}/${serie.poster_path}`}
+              id={serie.id}
+              genres={serie.genres}
+              setSerieInWatchlist={setSerieInWatchlist}
+              type={"add"}
+            />
+          </div>
         ) : (
-          <div>
-            <button onClick={handleDelete}> Borrar de mi lista</button>
+          <div className="add-to-list-form">
+            <Button
+              style={{
+                backgroundColor: "	#ff5555",
+                color: "#282a36",
+                fontWeight: "bold",
+                border: "none",
+              }}
+              onClick={handleDelete}
+            >
+              {" "}
+              Borrar de mi lista
+            </Button>
             <AddToListForm
               name={serie.name}
               image={`${import.meta.env.VITE_IMAGE_URL}/${serie.poster_path}`}

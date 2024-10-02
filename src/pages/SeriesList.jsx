@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 import SeriesCard from "../components/SeriesCard";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 function SeriesList({
   searchValue,
   setSearchValue,
@@ -58,42 +58,46 @@ function SeriesList({
     <div key={series.id} className="series-list-container">
       <div className="paginado">
         <Button
-          variant="secondary"
+          style={{ backgroundColor: "#8be9fd", color: "#282a36	" }}
           onClick={handleDecrease}
           disabled={pageNumber === 1}
         >
-          Página anterior
+          🢀
         </Button>{" "}
-        <h3>{pageNumber}</h3>
-        <Button variant="secondary" onClick={handleIncrease}>
-          Página siguiente
+        <h5> Página : {pageNumber}</h5>
+        <Button
+          style={{ backgroundColor: "#8be9fd", color: "#282a36	" }}
+          onClick={handleIncrease}
+        >
+          🢂
         </Button>{" "}
       </div>
 
-      <div className="sidebar-body">
-        <div className="series-list">
-          {series.map((serie) => {
-            return (
-              <Link to={`/series/${serie.id}`} key={serie.id}>
-                <SeriesCard serie={serie} type={"seriesList"} />
-              </Link>
-            );
-          })}
-        </div>
+      <div className="series-list">
+        {series.map((serie) => {
+          return (
+            <Link to={`/series/${serie.id}`} key={serie.id}>
+              <SeriesCard serie={serie} type={"seriesList"} />
+            </Link>
+          );
+        })}
       </div>
 
       <div className="paginado">
-        <button
-          className="boton-paginado"
+        <Button
+          style={{ backgroundColor: "#8be9fd", color: "#282a36	" }}
           onClick={handleDecrease}
           disabled={pageNumber === 1}
         >
-          Página anterior
-        </button>
-        <h3>{pageNumber}</h3>
-        <button className="boton-paginado" onClick={handleIncrease}>
-          Página siguiente
-        </button>
+          🢀
+        </Button>{" "}
+        <h5> Página : {pageNumber}</h5>
+        <Button
+          style={{ backgroundColor: "#8be9fd", color: "#282a36	" }}
+          onClick={handleIncrease}
+        >
+          🢂
+        </Button>{" "}
       </div>
     </div>
   );

@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Card from "react-bootstrap/Card";
 
 function SeriesCard({ serie, type }) {
+  const navigate = useNavigate();
+
   let estadoWatchlist;
 
   if (serie.personalWatchlist === "wantToWatch") {
@@ -13,33 +16,38 @@ function SeriesCard({ serie, type }) {
 
   if (type === "seriesList") {
     return (
-      <div className="series-card">
-        <img
-          src={`${import.meta.env.VITE_IMAGE_URL}/${serie.poster_path}`}
-          alt="Imagen"
-        />
-
-        <h3>{serie.name}</h3>
-      </div>
+      <Link to={`/series/${serie.id}`} key={serie.id}>
+        <Card className="series-card">
+          <Card.Img
+            variant="top"
+            src={`${import.meta.env.VITE_IMAGE_URL}/${serie.poster_path}`}
+          />
+          <Card.Body>
+            <Card.Title>
+              <h5> {serie.name} </h5>
+            </Card.Title>
+          </Card.Body>
+        </Card>
+      </Link>
     );
   } else if (type === "myList") {
     return (
-      <div className="series-card">
-        <Link to={`/series/${serie.id}`} key={serie.id}>
-          <div>
-            <div>
-              <img
-                src={`${import.meta.env.VITE_IMAGE_URL}/${serie.poster_path}`}
-                alt="Imagen"
-              />
-
-              <h3>{serie.name}</h3>
-              <p> Rating: {serie.rating}</p>
-              <p>{estadoWatchlist}</p>
-            </div>
-          </div>
-        </Link>
-      </div>
+      <Card
+        onClick={() => navigate(`/series/${serie.id}`)}
+        className="series-card"
+      >
+        <Card.Img
+          variant="top"
+          src={`${import.meta.env.VITE_IMAGE_URL}/${serie.poster_path}`}
+        />
+        <Card.Body>
+          <Card.Title>{serie.name}</Card.Title>
+          <Card.Text>
+            <p> Rating: {serie.rating}</p>
+            <p>{estadoWatchlist}</p>
+          </Card.Text>
+        </Card.Body>
+      </Card>
     );
   }
 }

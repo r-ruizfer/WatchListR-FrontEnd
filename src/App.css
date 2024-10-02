@@ -4,42 +4,57 @@ Azul medio : #219ebc
 Azul oscuro : #023047
 Amarillo : #ffb703
 Naranja : #fb8500
+
+celeste #25BFD7
+verde #91CA63
+morado #474D9B
+rosa #ED248E
+naranja #F6911D
+azul #4898D3
+azul oscuro #0E3256
+
+Dracula:
+Background		#282a36	
+Current Line		#44475a	
+Foreground		#f8f8f2	
+Comment		#6272a4	
+Cyan		#8be9fd	
+Green		#50fa7b	
+Orange		#ffb86c	
+Pink		#ff79c6	
+Purple		#bd93f9
+Red		#ff5555	255 
+Yellow		#f1fa8c	
+
+
 */
-
-body {
-background-color: #023047 ;
-color: aliceblue;
-}
-
 
 a {
   text-decoration: none;
-color: aliceblue;
-
+  color: #f8f8f2;
 }
 
 .navbar {
   display: flex;
   flex-direction: row;
-  border: 2px solid black;
-  align-items: center;
-  justify-content: space-around;
-  background-color:#8ecae6 ;
+  background-color: #6272a4;
+  color: #f8f8f2;
 }
-
+.navbar h5 {
+  color: #f8f8f2;
+}
+.navbar-collapse.collapse {
+  display: flex;
+  justify-content: space-evenly;
+}
 .navbar img {
   width: 100px;
 }
 
 .series-list-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  background-color: #282a36;
+  height: 100%;
   align-items: center;
-}
-
-.sidebar-body {
-  display: flex;
 }
 
 .series-list {
@@ -48,16 +63,150 @@ color: aliceblue;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
-  padding-bottom: 50px;
+  padding: 50px 0;
+  background-color: #282a36;
 }
 
 .series-card {
   border: 2px solid black;
+  max-width: 300px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.card-body {
+  background-color: #6272a4;
+}
+.card-text {
+  color: #f8f8f2;
+  text-decoration: none;
+}
+.card-title.h5 {
+  color: #f8f8f2;
+  text-decoration: none;
 }
 
-.series-card img {
-  max-width: 300px;
+.series-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
-.paginado{
+.series-card img {
+  width: 300px;
+  height: 400px;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.paginado {
   display: flex;
+  gap: 10px;
+  padding: 10px;
+  color: white;
+  justify-content: center;
+}
+
+.team-info-btns {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  gap: 10px;
+}
+.about {
+  background-color: #282a36;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+.team-info-card.card {
+  background-color: #44475a;
+  color: #f8f8f2;
+}
+
+.sidebar-list-watchlists button {
+  transition: transform 0.1s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 200px;
+}
+.sidebar-list-watchlists button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.sidebar-list-btns.btn-group-vertical {
+  gap: 10px;
+}
+.sidebar-list button {
+  width: 200px;
+}
+
+.sidebar {
+  background-color: #44475a;
+  color: #f8f8f2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  object-fit: cover;
+  position: relative;
+  justify-content: flex-start;
+  padding: 10px;
+  gap: 50px;
+}
+.sidebar-list {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  gap: 10px;
+}
+
+.sidebar-body {
+  height: 100%;
+  display: flex;
+}
+.series-details {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #282a36;
+  color: white;
+}
+.series-details img {
+  height: 300px;
+  width: 200px;
+  align-items: center;
+}
+.details-main-info {
+  display: flex;
+  padding: 20px;
+}
+.details-main-info-text {
+  padding: 20px;
+}
+.details-main-info-genres {
+  display: flex;
+  gap: 10px;
+}
+.details-main-info-genres h5 {
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #bd93f9;
+  color: black;
+  height: min-content;
+  width: min-content;
+  overflow: hidden;
+  text-align: center;
+}
+.details-general-info {
+  padding: 20px;
+}
+
+.add-to-list-form {
+  display: flex;
+  padding: 10px;
+  gap: 10px;
 }

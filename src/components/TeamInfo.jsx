@@ -1,19 +1,24 @@
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+
 function TeamInfo(props) {
   return (
-    <div className="team-info">
-      <h3 className="team-names">Nombre: {props.name}</h3>
-      <a style={{textDecoration: "none"}} href={props.github}>
-        <h4 className="socials-link" style={{ backgroundColor: '#2B3137' }}>
-          GitHub
-        </h4>
-      </a>
-      <a style={{textDecoration: "none"}} href={props.linkedin}>
-        <h4 className="socials-link" style={{ backgroundColor: '#0077b5' }}>
-          Linkedin
-        </h4>
-      </a>
-    </div>
-  )
+    <Card className="team-info-card">
+      <Card.Body>
+        <Card.Title>
+          <h3>{props.name}</h3>
+        </Card.Title>
+        <div className="team-info-btns">
+          <Button variant="dark" href={props.github}>
+            GitHub{" "}
+          </Button>
+          <Button variant="primary" href={props.linkedin}>
+            LinkedIn
+          </Button>
+        </div>
+      </Card.Body>
+    </Card>
+  );
 }
 
-export default TeamInfo
+export default TeamInfo;

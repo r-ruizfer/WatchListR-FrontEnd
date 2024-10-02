@@ -2,9 +2,8 @@ import { useRef, useState } from "react";
 import Modal from "react-modal";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import { Button } from "react-bootstrap";
 Modal.setAppElement("#root");
-
 function AddToListForm(props) {
   const [modalIsOpen, setIsOpen] = useState(false);
   //const [name, setName] = useState(props.name);
@@ -12,7 +11,6 @@ function AddToListForm(props) {
   // const [id, setId] = useState(props.id);
   const [rating, setRating] = useState("");
   const [personalWatchlist, setPersonalWatchlist] = useState(null);
-
   const handleRating = (e) => setRating(e.target.value);
   const handlePersonalWatchlist = (e) => setPersonalWatchlist(e.target.value);
   const navigate = useNavigate();
@@ -27,7 +25,6 @@ function AddToListForm(props) {
     },
   };
   const subtitle = useRef(null);
-
   function openModal() {
     setIsOpen(true);
   }
@@ -37,7 +34,6 @@ function AddToListForm(props) {
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const newSerie = {
       name: props.name,
       poster_path,
@@ -54,17 +50,14 @@ function AddToListForm(props) {
       const response = await axios.get(
         `${import.meta.env.VITE_SERVER_URL}/personalWatchlist?id=${props.id}`
       );
-
       props.setSerieInWatchlist(response.data);
       navigate("/mylist");
     } catch (error) {
       console.log(error);
     }
   };
-
   const handleUpdate = async (e) => {
     e.preventDefault();
-
     const updatedSerie = {
       name: props.name,
       poster_path,
@@ -73,7 +66,6 @@ function AddToListForm(props) {
       rating,
       personalWatchlist,
     };
-
     try {
       await axios.patch(
         `${import.meta.env.VITE_SERVER_URL}/personalWatchlist/${props.id}`,
@@ -82,33 +74,26 @@ function AddToListForm(props) {
       const response = await axios.get(
         `${import.meta.env.VITE_SERVER_URL}/personalWatchlist?id=${props.id}`
       );
-
       props.setSerieInWatchlist(response.data);
       closeModal();
     } catch (error) {
       console.log(error);
     }
   };
-
   if (props.type === "add") {
     return (
       <>
-        <button
+        <Button
           style={{
-            backgroundColor: "#22223b",
-            borderRadius: "15px",
-            color: "#9a8c98",
-            border: "none",
-            padding: "10px",
-            fontSize: "15px",
+            backgroundColor: "	#50fa7b",
+            color: "#f8f8f2",
             fontWeight: "bold",
-            margin: "20px",
-            width: "100px",
+            border: "none",
           }}
           onClick={openModal}
         >
           Añadir a Lista
-        </button>
+        </Button>
         <Modal
           isOpen={modalIsOpen}
           onAfterOpen={afterOpenModal}
@@ -119,7 +104,6 @@ function AddToListForm(props) {
           <form onSubmit={handleSubmit}>
             <img src={props.image} height={400} alt="imagen serie" />
             <h1>{props.name}</h1>
-
             <label>
               Añadir a lista
               <select
@@ -132,7 +116,6 @@ function AddToListForm(props) {
                 <option value="watched">Watched</option>
               </select>
             </label>
-
             <label
               style={{
                 display:
@@ -158,7 +141,6 @@ function AddToListForm(props) {
             </label>
             <button type="submit"> Submit</button>
           </form>
-
           <button onClick={closeModal}>close</button>
         </Modal>
       </>
@@ -166,22 +148,17 @@ function AddToListForm(props) {
   } else if (props.type === "update") {
     return (
       <>
-        <button
+        <Button
           style={{
-            backgroundColor: "#22223b",
-            borderRadius: "15px",
-            color: "#9a8c98",
-            border: "none",
-            padding: "10px",
-            fontSize: "15px",
+            backgroundColor: "	#8be9fd",
+            color: "#282a36",
             fontWeight: "bold",
-            margin: "20px",
-            width: "100px",
+            border: "none",
           }}
           onClick={openModal}
         >
           Actualizar Estado
-        </button>
+        </Button>
         <Modal
           isOpen={modalIsOpen}
           onAfterOpen={afterOpenModal}
@@ -192,7 +169,6 @@ function AddToListForm(props) {
           <form onSubmit={handleUpdate}>
             <img src={props.image} height={400} alt="imagen serie" />
             <h1>{props.name}</h1>
-
             <label>
               Cambiar lista{" "}
               <select
@@ -226,12 +202,10 @@ function AddToListForm(props) {
             </label>
             <button type="submit"> Submit</button>
           </form>
-
           <button onClick={closeModal}>close</button>
         </Modal>
       </>
     );
   }
 }
-
 export default AddToListForm;

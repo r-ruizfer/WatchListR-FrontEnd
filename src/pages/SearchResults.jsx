@@ -51,11 +51,7 @@ function SearchResults({
 
   return (
     <div className="series-list">
-      <Sidebar
-        type="seriesList"
-        filterValue={filterValue}
-        setFilterValue={setFilterValue}
-      />
+   
       {searchResults
         .filter((serie) => {
           if (!filterValue) {
