@@ -1,15 +1,14 @@
 import { Link } from "react-router-dom";
 
 function SeriesCard({ serie, type }) {
-
-  let estadoWatchlist
+  let estadoWatchlist;
 
   if (serie.personalWatchlist === "wantToWatch") {
-    estadoWatchlist = "Quiero verla"
+    estadoWatchlist = "Quiero verla";
   } else if (serie.personalWatchlist === "watching") {
-    estadoWatchlist = "Viendo"
+    estadoWatchlist = "Viendo";
   } else if (serie.personalWatchlist === "watched") {
-    estadoWatchlist = "Vista"
+    estadoWatchlist = "Vista";
   }
 
   if (type === "seriesList") {
@@ -40,7 +39,6 @@ function SeriesCard({ serie, type }) {
             </div>
           </div>
         </Link>
-       
       </div>
     );
   }

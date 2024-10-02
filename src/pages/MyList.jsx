@@ -26,7 +26,7 @@ function MyList({searchValue, setSearchValue, filterValue, setFilterValue}) {
 
   return (
     <div className="series-list-container">
-      <Search searchValue={searchValue} setSearchValue={setSearchValue} />
+    
 
       <div className="sidebar-body">
         <Sidebar type={"myList"} filterValue={filterValue} setFilterValue={setFilterValue} watchlistFilter={watchlistFilter} setWatchlistFilter={setWatchlistFilter} />

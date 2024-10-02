@@ -47,7 +47,10 @@ function AddToListForm(props) {
       personalWatchlist,
     };
     try {
-      await axios.post(`${import.meta.env.VITE_SERVER_URL}/personalWatchlist`, newSerie);
+      await axios.post(
+        `${import.meta.env.VITE_SERVER_URL}/personalWatchlist`,
+        newSerie
+      );
       const response = await axios.get(
         `${import.meta.env.VITE_SERVER_URL}/personalWatchlist?id=${props.id}`
       );
@@ -73,20 +76,21 @@ function AddToListForm(props) {
 
     try {
       await axios.patch(
-        `${import.meta.env.VITE_SERVER_URL}/personalWatchlist/${props.id}`, updatedSerie);
+        `${import.meta.env.VITE_SERVER_URL}/personalWatchlist/${props.id}`,
+        updatedSerie
+      );
       const response = await axios.get(
         `${import.meta.env.VITE_SERVER_URL}/personalWatchlist?id=${props.id}`
       );
 
       props.setSerieInWatchlist(response.data);
-      navigate("/mylist");
+      closeModal();
     } catch (error) {
       console.log(error);
     }
   };
 
-  if (props.type === "add"){
-
+  if (props.type === "add") {
     return (
       <>
         <button
@@ -115,7 +119,7 @@ function AddToListForm(props) {
           <form onSubmit={handleSubmit}>
             <img src={props.image} height={400} alt="imagen serie" />
             <h1>{props.name}</h1>
-            
+
             <label>
               Añadir a lista
               <select
@@ -129,9 +133,21 @@ function AddToListForm(props) {
               </select>
             </label>
 
-            <label style={{ display: personalWatchlist === "watching" || personalWatchlist === "watched" ? "block" : "none" }}>
-            Rating
-              <select className="rating-form" name="rating" onChange={handleRating} >
+            <label
+              style={{
+                display:
+                  personalWatchlist === "watching" ||
+                  personalWatchlist === "watched"
+                    ? "block"
+                    : "none",
+              }}
+            >
+              Rating
+              <select
+                className="rating-form"
+                name="rating"
+                onChange={handleRating}
+              >
                 <option value="-">---</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -147,7 +163,7 @@ function AddToListForm(props) {
         </Modal>
       </>
     );
-  } else if (props.type === "update"){
+  } else if (props.type === "update") {
     return (
       <>
         <button
@@ -176,19 +192,9 @@ function AddToListForm(props) {
           <form onSubmit={handleUpdate}>
             <img src={props.image} height={400} alt="imagen serie" />
             <h1>{props.name}</h1>
+
             <label>
-              Rating
-              <select name="rating" onChange={handleRating}>
-                <option value="-">---</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-            </label>
-            <label>
-              Añadir a lista
+              Cambiar lista{" "}
               <select
                 name="personalWatchlist"
                 onChange={handlePersonalWatchlist}
@@ -199,13 +205,32 @@ function AddToListForm(props) {
                 <option value="watched">Watched</option>
               </select>
             </label>
+            <label
+              style={{
+                display:
+                  personalWatchlist === "watching" ||
+                  personalWatchlist === "watched"
+                    ? "block"
+                    : "none",
+              }}
+            >
+              Rating
+              <select name="rating" onChange={handleRating}>
+                <option value="-">---</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </label>
             <button type="submit"> Submit</button>
           </form>
 
           <button onClick={closeModal}>close</button>
         </Modal>
       </>
-    )
+    );
   }
 }
 

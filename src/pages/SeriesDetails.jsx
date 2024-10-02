@@ -9,14 +9,14 @@ function SeriesDetails() {
   const [serie, setSerie] = useState(null);
   const [serieInWatchlist, setSerieInWatchlist] = useState(false);
   const navigate = useNavigate();
-  
+
   const options = {
     method: "GET",
     url: `https://api.themoviedb.org/3/tv/${params.seriesId}`,
     params: { language: "en-US" },
     headers: {
       accept: "application/json",
-      Authorization: `${import.meta.env.VITE_API_KEY}`
+      Authorization: `${import.meta.env.VITE_API_KEY}`,
     },
   };
 
@@ -24,7 +24,6 @@ function SeriesDetails() {
     axios
       .request(options)
       .then((response) => {
-        console.log(response.data);
         setSerie(response.data);
         return axios.get(
           `http://localhost:5000/personalWatchlist?id=${response.data.id}`
@@ -32,7 +31,6 @@ function SeriesDetails() {
       })
       .then((response) => {
         setSerieInWatchlist(response.data);
-        console.log(response.data[0].rating)
       })
       .catch((error) => {
         console.error(error);
@@ -40,11 +38,9 @@ function SeriesDetails() {
   }, []);
 
   function handleDelete() {
-    
-    axios.delete(`http://localhost:5000/personalWatchlist/${serie.id}`)
-    .then(
-      navigate("/mylist")
-    )
+    axios
+      .delete(`http://localhost:5000/personalWatchlist/${serie.id}`)
+      .then(navigate("/mylist"));
   }
 
   if (serie === null) {
@@ -61,7 +57,7 @@ function SeriesDetails() {
           alt="TV Show Image"
         />
         <h1>{serie.name}</h1>
-        
+
         {serie.genres.map((genre) => {
           return <h5 key={genre.name}>{genre.name}</h5>;
         })}
@@ -79,8 +75,21 @@ function SeriesDetails() {
         <p>Número de temporadas: {serie.number_of_seasons}</p>
         <p>Idioma original: {serie.original_language}</p>
 
-        {serieInWatchlist !== false ? (<p>Rating: {serieInWatchlist.rating}</p>) : (null)}
-        
+        {serieInWatchlist.length > 0 ? (
+          <div>
+            <p>Rating: {serieInWatchlist[0].rating}</p>
+            <p>
+              Estado:{" "}
+              {serieInWatchlist[0].personalWatchlist === "wantToWatch"
+                ? "Quiero Verla"
+                : serieInWatchlist[0].personalWatchlist === "watching"
+                ? "Viendo"
+                : serieInWatchlist[0].personalWatchlist === "watched"
+                ? "Vista"
+                : ""}
+            </p>
+          </div>
+        ) : null}
 
         <p>{serie.overview}</p>
         {serieInWatchlist.length === 0 ? (
@@ -96,12 +105,12 @@ function SeriesDetails() {
           <div>
             <button onClick={handleDelete}> Borrar de mi lista</button>
             <AddToListForm
-            name={serie.name}
-            image={`${import.meta.env.VITE_IMAGE_URL}/${serie.poster_path}`}
-            id={serie.id}
-            setSerieInWatchlist={setSerieInWatchlist}
-            type={"update"}
-          />
+              name={serie.name}
+              image={`${import.meta.env.VITE_IMAGE_URL}/${serie.poster_path}`}
+              id={serie.id}
+              setSerieInWatchlist={setSerieInWatchlist}
+              type={"update"}
+            />
           </div>
         )}
       </div>
