@@ -49,7 +49,7 @@ function App() {
         />
         <Route path="*" element={<ErrorPage />} />
         <Route
-          path="/series/searchResults"
+          path="/series/searchResults/:query"
           element={
             <SearchResults
               searchValue={searchValue}

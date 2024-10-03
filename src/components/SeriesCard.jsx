@@ -23,10 +23,10 @@ function SeriesCard({ serie, type }) {
             src={`${import.meta.env.VITE_IMAGE_URL}/${serie.poster_path}`}
           />
           <Card.Body>
-            <Card.Title>
-              <h5> {serie.name} </h5>
-            </Card.Title>
-          </Card.Body>
+          <Card.Title>
+            <h5>{serie.name}</h5>
+          </Card.Title>
+        </Card.Body>
         </Card>
       </Link>
     );
@@ -41,7 +41,9 @@ function SeriesCard({ serie, type }) {
           src={`${import.meta.env.VITE_IMAGE_URL}/${serie.poster_path}`}
         />
         <Card.Body>
-          <Card.Title>{serie.name}</Card.Title>
+          <Card.Title>
+            <h5>{serie.name}</h5>
+          </Card.Title>
           <Card.Text>
             <p> Rating: {serie.rating}</p>
             <p>{estadoWatchlist}</p>

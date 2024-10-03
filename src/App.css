@@ -168,6 +168,7 @@ nav.navbar.navbar-expand.navbar-light {
   color: #f8f8f2;
   text-decoration: none;
 }
+
 .card-title.h5 {
   color: #f8f8f2;
   text-decoration: none;
@@ -190,6 +191,12 @@ nav.navbar.navbar-expand.navbar-light {
   padding: 10px;
   color: white;
   justify-content: center;
+}
+
+.paginado button {
+  background-color: #8be9fd;
+  border: none;
+  color: #282a36
 }
 
 .team-info-btns {
@@ -276,10 +283,6 @@ nav.navbar.navbar-expand.navbar-light {
   width: min-content;
   padding-top: 40px;
   gap: 20px;
-}
-
-.details-main-info-text {
-  
 }
 
 .details-main-info-genres {

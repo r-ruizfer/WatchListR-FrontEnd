@@ -53,7 +53,6 @@ function SeriesList({ series, setSeries }) {
     <div key={series.id} className="series-list-container">
       <div className="paginado">
         <Button
-          style={{ backgroundColor: "#8be9fd", color: "#282a36	" }}
           onClick={handleDecrease}
           disabled={pageNumber === 1}
         >
@@ -61,7 +60,6 @@ function SeriesList({ series, setSeries }) {
         </Button>{" "}
         <h5> Página : {pageNumber}</h5>
         <Button
-          style={{ backgroundColor: "#8be9fd", color: "#282a36	" }}
           onClick={handleIncrease}
         >
           🢂
@@ -80,7 +78,6 @@ function SeriesList({ series, setSeries }) {
 
       <div className="paginado">
         <Button
-          style={{ backgroundColor: "#8be9fd", color: "#282a36	" }}
           onClick={handleDecrease}
           disabled={pageNumber === 1}
         >
@@ -88,7 +85,6 @@ function SeriesList({ series, setSeries }) {
         </Button>{" "}
         <h5> Página : {pageNumber}</h5>
         <Button
-          style={{ backgroundColor: "#8be9fd", color: "#282a36	" }}
           onClick={handleIncrease}
         >
           🢂

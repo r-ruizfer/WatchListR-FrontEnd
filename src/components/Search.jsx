@@ -9,16 +9,16 @@ function Search({ type, searchValue, setSearchValue }) {
 
     const handleSearchChange = (event) => {
       setSearchValue(event.target.value);
-      console.log(event.target.value)
     };
 
     const handleSearchButton = () => {
-      navigate(`/series/searchResults`)
+      navigate(`/series/searchResults/${searchValue}`)
+      window.location.reload(`/series/searchResults/${searchValue}`)
     }
 
     return (
       <div style={{ display: "flex" , padding: "20px"}}>
-        <input style={{backgroundColor: "#282a36", color:"#f8f8f2", height: "40px", width: "300px", padding: "0 15px", border: "none", borderRadius:"10px"}}
+        <input id="search-id" style={{backgroundColor: "#282a36", color:"#f8f8f2", height: "40px", width: "300px", padding: "0 15px", border: "none", borderRadius:"10px"}}
           onChange={handleSearchChange}
           value={searchValue}
           type="text"

@@ -42,7 +42,6 @@ function MyList({ searchValue, filterValue, setFilterValue }) {
         return serie.genres.some((genre) => genre.name === filterValue);
       }
     })
-    .filter((serie) => serie.name.toLowerCase().includes(searchValue));
 
   return (
     <div className="mylist-container">

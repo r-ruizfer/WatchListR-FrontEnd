@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import SeriesCard from "../components/SeriesCard";
 import axios from "axios";
 import Sidebar from "../components/Sidebar";
@@ -11,13 +11,14 @@ function SearchResults({
   filterValue,
   setFilterValue,
 }) {
+  const params = useParams()
   const [searchResults, setSearchResults] = useState(null);
 
   const options = {
     method: "GET",
     url: "https://api.themoviedb.org/3/search/tv",
     params: {
-      query: `${searchValue}`,
+      query: `${params.query}`,
       include_adult: "false",
       language: "en-US",
       page: "1",
@@ -32,14 +33,13 @@ function SearchResults({
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data);
         setSearchResults(response.data.results);
-        console.log(searchResults);
+        setSearchValue("")
       })
       .catch(function (error) {
         console.error(error);
       });
-  }, [searchValue]);
+  }, []);
 
   if (searchResults === null) {
     <h3>...cargando</h3>;
