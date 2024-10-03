@@ -2,7 +2,7 @@ import { useState } from "react";
 import Modal from "react-modal";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Modal, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 Modal.setAppElement("#root");
 
 function AddToListForm(props) {
