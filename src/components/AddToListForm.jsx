@@ -1,12 +1,11 @@
 import { useState } from "react";
-import Modal from "react-modal";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
-Modal.setAppElement("#root");
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
 
 function AddToListForm(props) {
-
   const [modalIsOpen, setIsOpen] = useState(false);
   const [poster_path, setPosterPath] = useState(props.image);
   const [rating, setRating] = useState("");
@@ -15,17 +14,6 @@ function AddToListForm(props) {
   const handlePersonalWatchlist = (e) => setPersonalWatchlist(e.target.value);
   const navigate = useNavigate();
 
-  const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-    },
-  };
-
   function openModal() {
     setIsOpen(true);
   }
@@ -33,9 +21,8 @@ function AddToListForm(props) {
   function closeModal() {
     setIsOpen(false);
   }
-  
-  const handleSubmit = async (e) => {
 
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newSerie = {
       name: props.name,
@@ -62,7 +49,6 @@ function AddToListForm(props) {
   };
 
   const handleUpdate = async (e) => {
-
     e.preventDefault();
     const updatedSerie = {
       name: props.name,
@@ -89,12 +75,13 @@ function AddToListForm(props) {
   };
 
   if (props.type === "add") {
+
     return (
       <>
         <Button
           style={{
             backgroundColor: "	#50fa7b",
-            color: "#f8f8f2",
+            color: "#282a36",
             fontWeight: "bold",
             border: "none",
           }}
@@ -102,57 +89,66 @@ function AddToListForm(props) {
         >
           Añadir a Lista
         </Button>
-        
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          style={customStyles}
-          contentLabel="Example Modal"
-        >
-          <form onSubmit={handleSubmit}>
-            <img src={props.image} height={400} alt="imagen serie" />
-            <h1>{props.name}</h1>
-            <label>
-              Añadir a lista
-              <select
-                name="personalWatchlist"
-                onChange={handlePersonalWatchlist}
+  
+        <Modal show={modalIsOpen} onHide={closeModal}>
+          <Modal.Header closeButton style={{display: "flex", alignItems: "flex-start", backgroundColor: "#44475a", color: "white"}}>
+            <Modal.Title style={{display: "flex", flexDirection: "column", alignItems: "center", padding: "0 80px", textAlign: "center"}}>
+              <img src={props.image} height={200} alt="imagen serie" />
+              <h1>{props.name}</h1>
+            </Modal.Title>
+          </Modal.Header>
+  
+          <Modal.Body style={{backgroundColor: "#44475a", color: "white"}}>
+            <Form onSubmit={handleSubmit} style={{display: "flex", flexDirection: "column", gap: "20px"}}>
+              <Form.Group>
+                <Form.Label>Añadir a lista</Form.Label>
+                <Form.Select
+                  name="personalWatchlist"
+                  onChange={handlePersonalWatchlist}
+                  value={personalWatchlist}
+                  style={{backgroundColor: "#282a36", color: "#f8f8f2"}}
+                >
+                  <option value="-">---</option>
+                  <option value="wantToWatch">Quiero Verla</option>
+                  <option value="watching">Viendo</option>
+                  <option value="watched">Vista</option>
+                </Form.Select>
+              </Form.Group>
+
+              <Form.Group
+                style={{
+                  display:
+                    personalWatchlist === "watching" ||
+                    personalWatchlist === "watched"
+                      ? "block"
+                      : "none",
+                }}
               >
-                <option value="-">---</option>
-                <option value="wantToWatch">Want to Watch</option>
-                <option value="watching">Watching</option>
-                <option value="watched">Watched</option>
-              </select>
-            </label>
-            <label
-              style={{
-                display:
-                  personalWatchlist === "watching" ||
-                  personalWatchlist === "watched"
-                    ? "block"
-                    : "none",
-              }}
-            >
-              Rating
-              <select
-                className="rating-form"
-                name="rating"
-                onChange={handleRating}
-              >
-                <option value="-">---</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-            </label>
-            <button type="submit"> Submit</button>
-          </form>
-          <button onClick={closeModal}>close</button>
+                <Form.Label>Rating</Form.Label>
+                <Form.Select
+                  className="rating-form"
+                  name="rating"
+                  onChange={handleRating}
+                  defaultValue="-"
+                  style={{backgroundColor: "#282a36", color: "#f8f8f2"}}
+                >
+                  <option value="-">---</option>
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </Form.Select>
+              </Form.Group>
+  
+              <Button style={{backgroundColor: "#8be9fd", color: "black", fontWeight: "bold"}} type="submit" disabled={personalWatchlist === null || personalWatchlist === "-"}>Añadir</Button>
+            </Form>
+          </Modal.Body>
         </Modal>
       </>
     );
+
   } else if (props.type === "update") {
     return (
       <>
@@ -167,52 +163,64 @@ function AddToListForm(props) {
         >
           Actualizar Estado
         </Button>
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          style={customStyles}
-          contentLabel="Example Modal"
-        >
-          <form onSubmit={handleUpdate}>
-            <img src={props.image} height={400} alt="imagen serie" />
-            <h1>{props.name}</h1>
-            <label>
-              Cambiar lista{" "}
-              <select
-                name="personalWatchlist"
-                onChange={handlePersonalWatchlist}
+
+        <Modal show={modalIsOpen} onHide={closeModal}>
+          <Modal.Header closeButton style={{display: "flex", alignItems: "flex-start", backgroundColor: "#44475a", color: "white"}}>
+            <Modal.Title style={{display: "flex", flexDirection: "column", alignItems: "center", padding: "0 80px", textAlign: "center"}}>
+              <img src={props.image} height={200} alt="imagen serie" />
+              <h1>{props.name}</h1>
+            </Modal.Title>
+          </Modal.Header>
+  
+          <Modal.Body style={{backgroundColor: "#44475a", color: "white"}}>
+            <Form onSubmit={handleUpdate} style={{display: "flex", flexDirection: "column", gap: "20px"}}>
+              <Form.Group>
+                <Form.Label>Actualizar Estado</Form.Label>
+                <Form.Select
+                  name="personalWatchlist"
+                  onChange={handlePersonalWatchlist}
+                  style={{backgroundColor: "#282a36", color: "#f8f8f2"}}
+                >
+                  <option value="-">---</option>
+                  <option value="wantToWatch">Quiero Verla</option>
+                  <option value="watching">Viendo</option>
+                  <option value="watched">Vista</option>
+                </Form.Select>
+              </Form.Group>
+
+              <Form.Group
+                style={{
+                  display:
+                    personalWatchlist === "watching" ||
+                    personalWatchlist === "watched"
+                      ? "block"
+                      : "none",
+                }}
               >
-                <option value="-">---</option>
-                <option value="wantToWatch">Want to Watch</option>
-                <option value="watching">Watching</option>
-                <option value="watched">Watched</option>
-              </select>
-            </label>
-            <label
-              style={{
-                display:
-                  personalWatchlist === "watching" ||
-                  personalWatchlist === "watched"
-                    ? "block"
-                    : "none",
-              }}
-            >
-              Rating
-              <select name="rating" onChange={handleRating}>
-                <option value="-">---</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-            </label>
-            <button type="submit"> Submit</button>
-          </form>
-          <button onClick={closeModal}>close</button>
+                <Form.Label>Rating</Form.Label>
+                <Form.Select
+                  className="rating-form"
+                  name="rating"
+                  onChange={handleRating}
+                  style={{backgroundColor: "#282a36", color: "#f8f8f2"}}
+                >
+                  <option value="-">---</option>
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </Form.Select>
+              </Form.Group>
+  
+              <Button style={{backgroundColor: "#8be9fd", color: "black", fontWeight: "bold", border: "none"}} type="submit" disabled={personalWatchlist === null || personalWatchlist === "-"}>Actualizar</Button>
+            </Form>
+          </Modal.Body>
         </Modal>
       </>
     );
   }
 }
+
 export default AddToListForm;

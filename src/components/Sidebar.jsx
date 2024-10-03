@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 
@@ -137,7 +137,7 @@ function Sidebar({
                       style={{ display: "block" }}
                       variant="outline-light"
                       size="lg"
-                      value={genre.id}
+                      value={genre.name}
                       onClick={handleFilter}
                     >
                       {genre.name}

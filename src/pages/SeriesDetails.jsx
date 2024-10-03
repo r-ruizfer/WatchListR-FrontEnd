@@ -32,6 +32,7 @@ function SeriesDetails() {
       })
       .then((response) => {
         setSerieInWatchlist(response.data);
+        
       })
       .catch((error) => {
         console.error(error);
@@ -49,6 +50,7 @@ function SeriesDetails() {
   }
 
   return (
+    
     <div className="sidebar-body">
       <Sidebar type={"seriesDetails"} />
 
@@ -150,6 +152,7 @@ function SeriesDetails() {
               name={serie.name}
               image={`${import.meta.env.VITE_IMAGE_URL}/${serie.poster_path}`}
               id={serie.id}
+              serieInWatchlist={serieInWatchlist}
               setSerieInWatchlist={setSerieInWatchlist}
               type={"update"}
             />

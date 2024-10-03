@@ -1,10 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom"
+import SearchImage from "../assets/magnifier.png"
 
 function Search({ type, searchValue, setSearchValue }) {
 
   const navigate = useNavigate()
-  const params = useParams()
 
   if (type === "navbar") {
 
@@ -19,13 +18,15 @@ function Search({ type, searchValue, setSearchValue }) {
 
     return (
       <div style={{ display: "flex" , padding: "20px"}}>
-        <input style={{color:"#020100", height: "40px", width: "300px"}}
+        <input style={{backgroundColor: "#282a36", color:"#f8f8f2", height: "40px", width: "300px", padding: "0 15px", border: "none", borderRadius:"10px"}}
           onChange={handleSearchChange}
           value={searchValue}
           type="text"
           placeholder="Buscar"
         ></input>
-        <button onClick={handleSearchButton}>Buscar</button>
+        <button onClick={handleSearchButton} style={{backgroundColor: "transparent", border: "none"}}>
+          <img src={SearchImage} alt="Buscar" style={{width: "40px"}} />
+        </button>
       </div>
     );
 
@@ -37,7 +38,7 @@ function Search({ type, searchValue, setSearchValue }) {
 
     return (
       <div style={{ display: "flex" , padding: "20px"}}>
-        <input style={{color:"#020100", height: "40px", width: "300px"}}
+        <input style={{backgroundColor: "#282a36", color:"#020100", height: "40px", width: "300px"}}
           onChange={handleSearchChange}
           value={searchValue}
           type="text"
