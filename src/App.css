@@ -110,12 +110,20 @@ nav.navbar.navbar-expand.navbar-light {
 
 .series-list-container {
   background-color: #282a36;
+  padding: 50px;
+}
+
+.mylist-container {
+  display: flex;
+  background-color: #282a36;
   height: 100%;
 }
 
 .series-list-filter {
   padding: 50px 50px;
   color: white;
+  height: 100%;
+  width: 100%;
 }
 
 .series-list {
@@ -124,6 +132,17 @@ nav.navbar.navbar-expand.navbar-light {
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
+  padding: 50px 0;
+  background-color: #282a36;
+}
+
+.search-list {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 50px 50px;
   background-color: #282a36;
 }
 
@@ -179,6 +198,7 @@ nav.navbar.navbar-expand.navbar-light {
   width: 200px;
   gap: 10px;
 }
+
 .about {
   background-color: #282a36;
   color: white;
@@ -231,34 +251,43 @@ nav.navbar.navbar-expand.navbar-light {
 
 .sidebar-body {
   height: 100%;
+  width: 100%;
   display: flex;
   width: fit-content;
 }
 .series-details {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   background-color: #282a36;
   color: white;
-  padding: 40px;
+  width: 100vw;
+  align-items: center;
 }
+
 .series-details img {
   height: 300px;
   width: 200px;
   align-items: center;
 }
+
 .details-main-info {
   display: flex;
-  padding: 20px;
+  width: min-content;
+  padding-top: 40px;
+  gap: 20px;
 }
+
 .details-main-info-text {
-  padding: 20px;
+  
 }
+
 .details-main-info-genres {
   display: flex;
-  gap: 10px;
+  flex-wrap: wrap;
 }
-.details-main-info-genres h5 {
+
+.details-main-info-genres h6 {
   border: 2px solid black;
   border-radius: 5px;
   padding: 5px;
@@ -268,15 +297,35 @@ nav.navbar.navbar-expand.navbar-light {
   width: min-content;
   overflow: hidden;
   text-align: center;
+  max-height: 30px;
 }
 .details-general-info {
   padding: 20px;
+  max-width: 500px;
 }
 
 .add-to-list-form {
   display: flex;
-  padding: 10px;
+  padding-bottom: 40px;
   gap: 10px;
+}
+
+.add-to-list-form button {
+  transition: transform 0.1s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 120px;
+}
+
+.add-to-list-form button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.back-btns {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+  padding-top: 30px;
 }
 
 .error-page {

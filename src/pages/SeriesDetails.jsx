@@ -32,7 +32,6 @@ function SeriesDetails() {
       })
       .then((response) => {
         setSerieInWatchlist(response.data);
-        
       })
       .catch((error) => {
         console.error(error);
@@ -50,11 +49,23 @@ function SeriesDetails() {
   }
 
   return (
-    
     <div className="sidebar-body">
-      <Sidebar type={"seriesDetails"} />
-
       <div className="series-details">
+        <div className="back-btns">
+          <Button
+            onClick={() => navigate("/series")}
+            variant="outline-danger"
+          >
+            Volver al listado
+          </Button>
+          <Button
+            onClick={() => navigate("/mylist")}
+            variant="outline-success"
+          >
+            Volver a mis series
+          </Button>
+        </div>
+
         <div className="details-main-info">
           <img
             src={`${import.meta.env.VITE_IMAGE_URL}/${serie.poster_path}`}
@@ -64,7 +75,7 @@ function SeriesDetails() {
             <h1>{serie.name}</h1>
             <div className="details-main-info-genres">
               {serie.genres.map((genre) => {
-                return <h5 key={genre.name}>{genre.name}</h5>;
+                return <h6 key={genre.name}>{genre.name}</h6>;
               })}
             </div>
             {serieInWatchlist.length > 0 ? (
@@ -73,7 +84,7 @@ function SeriesDetails() {
                 <p
                   style={{
                     textAlign: "center",
-                    width: "200px",
+                    width: "120px",
                     padding: "10px",
                     borderRadius: "5px",
                     fontWeight: "bold",

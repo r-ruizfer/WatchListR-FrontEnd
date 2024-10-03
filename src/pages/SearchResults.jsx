@@ -50,7 +50,7 @@ function SearchResults({
   }
 
   return (
-    <div className="series-list">
+    <div className="search-list">
    
       {searchResults
         .filter((serie) => {

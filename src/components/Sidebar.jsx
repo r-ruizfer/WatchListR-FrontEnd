@@ -6,12 +6,12 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 
 function Sidebar({
   type,
-  filterValue,
   setFilterValue,
-  watchlistFilter,
   setWatchlistFilter,
+  handleCloseSidebar
 }) {
   const navigate = useNavigate();
+
   if (type === "seriesDetails") {
     return (
       <div className="sidebar">
@@ -46,12 +46,12 @@ function Sidebar({
 
     const handleWatchlistFilter = (event) => {
       setWatchlistFilter(event.target.value);
-      console.log(watchlistFilter);
+      handleCloseSidebar()
     };
 
     const handleFilter = (event) => {
       setFilterValue(event.target.value);
-      console.log(filterValue);
+      handleCloseSidebar()
     };
 
     const options = {
