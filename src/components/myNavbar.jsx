@@ -18,7 +18,8 @@ function MyNavbar({ searchValue, setSearchValue }) {
   const styleCollapsed = {
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
+    paddingTop: "15px"
   }
 
   const styleNotCollapsed = {
@@ -39,8 +40,7 @@ function MyNavbar({ searchValue, setSearchValue }) {
       <Navbar.Collapse id="basic-navbar-nav" >
         <Nav className="me-auto" style={collapse ? styleCollapsed : styleNotCollapsed}>
           <Nav.Link as={Link} to="/series">
-            {" "}
-            <h5> Series más populares </h5>{" "}
+            <h5> Series más populares </h5>
           </Nav.Link>
           <Nav.Link as={Link} to="/mylist">
             <h5> Mi lista </h5>

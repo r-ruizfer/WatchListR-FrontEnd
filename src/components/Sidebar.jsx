@@ -1,47 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 
 function Sidebar({
-  type,
   setFilterValue,
   setWatchlistFilter,
   handleCloseSidebar
 }) {
-  const navigate = useNavigate();
-
-  if (type === "seriesDetails") {
-    return (
-      <div className="sidebar">
-        <div className="sidebar-list">
-          <Button
-            onClick={() => navigate("/series")}
-            style={{
-              backgroundColor: "	#50fa7b",
-              color: "#282a36",
-              border: "none",
-              fontWeight: "bold",
-            }}
-          >
-            Volver al listado
-          </Button>
-          <Button
-            onClick={() => navigate("/mylist")}
-            style={{
-              backgroundColor: "	#8be9fd",
-              color: "#282a36",
-              border: "none",
-              fontWeight: "bold",
-            }}
-          >
-            Volver a mis series
-          </Button>
-        </div>
-      </div>
-    );
-  } else if (type === "myList") {
     const [genres, setGenres] = useState(null);
 
     const handleWatchlistFilter = (event) => {
@@ -81,12 +47,11 @@ function Sidebar({
 
     return (
       <div className="sidebar">
-        <div className="sidebar-list-watchlists">
-          <h4>Filtrar por lista:</h4>
+        <div className="sidebar-list">
+          <h5>Filtrar por lista:</h5>
           <ButtonGroup vertical>
             <Button
               style={{ backgroundColor: "	#bd93f9", color: "#282a36", border: "none"}}
-              size="lg"
               value=""
               onClick={handleWatchlistFilter}
             >
@@ -94,7 +59,6 @@ function Sidebar({
             </Button>
             <Button
               style={{ backgroundColor: "	#50fa7b", color: "#282a36", border: "none"}}
-              size="lg"
               value="wantToWatch"
               onClick={handleWatchlistFilter}
             >
@@ -102,7 +66,6 @@ function Sidebar({
             </Button>
             <Button
               style={{ backgroundColor: "	#f1fa8c", color: "#282a36", border: "none"}}
-              size="lg"
               value="watching"
               onClick={handleWatchlistFilter}
             >
@@ -110,7 +73,6 @@ function Sidebar({
             </Button>
             <Button
               style={{ backgroundColor: "	#ff5555", color: "#282a36", border: "none"}}
-              size="lg"
               value="watched"
               onClick={handleWatchlistFilter}
             >
@@ -119,14 +81,13 @@ function Sidebar({
           </ButtonGroup>
         </div>
         <div className="sidebar-list">
-          <h4>Filtrar por genero:</h4>
+          <h5>Filtrar por genero:</h5>
           <Button
-            size="lg"
             variant="outline-danger"
             value=""
             onClick={handleFilter}
           >
-            Todos los géneros
+            <h6>Todos los géneros</h6>
           </Button>
           <ButtonGroup vertical className="sidebar-list-btns">
             {genres &&
@@ -136,7 +97,6 @@ function Sidebar({
                     <Button
                       style={{ display: "block" }}
                       variant="outline-light"
-                      size="lg"
                       value={genre.name}
                       onClick={handleFilter}
                     >
@@ -150,6 +110,5 @@ function Sidebar({
       </div>
     );
   }
-}
 
 export default Sidebar;

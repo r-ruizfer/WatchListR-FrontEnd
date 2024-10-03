@@ -25,7 +25,7 @@ function Search({ type, searchValue, setSearchValue }) {
           placeholder="Buscar"
         ></input>
         <button onClick={handleSearchButton} style={{backgroundColor: "transparent", border: "none"}}>
-          <img src={SearchImage} alt="Buscar" style={{width: "40px"}} />
+          <img src={SearchImage} alt="Buscar" style={{width: "35px"}} />
         </button>
       </div>
     );

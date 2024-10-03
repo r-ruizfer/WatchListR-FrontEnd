@@ -57,13 +57,13 @@ function SeriesList({ series, setSeries }) {
           disabled={pageNumber === 1}
         >
           🢀
-        </Button>{" "}
-        <h5> Página : {pageNumber}</h5>
+        </Button>
+        <h5> Página: {pageNumber}</h5>
         <Button
           onClick={handleIncrease}
         >
           🢂
-        </Button>{" "}
+        </Button>
       </div>
 
       <div className="series-list">
@@ -82,13 +82,13 @@ function SeriesList({ series, setSeries }) {
           disabled={pageNumber === 1}
         >
           🢀
-        </Button>{" "}
-        <h5> Página : {pageNumber}</h5>
+        </Button>
+        <h5> Página: {pageNumber}</h5>
         <Button
           onClick={handleIncrease}
         >
           🢂
-        </Button>{" "}
+        </Button>
       </div>
     </div>
   );

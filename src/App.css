@@ -1,19 +1,4 @@
 /*
-Azul claro : #8ecae6
-Azul medio : #219ebc
-Azul oscuro : #023047
-Amarillo : #ffb703
-Naranja : #fb8500
-
-celeste #25BFD7
-verde #91CA63
-morado #474D9B
-rosa #ED248E
-naranja #F6911D
-azul #4898D3
-azul oscuro #0E3256
-
-Dracula:
 Background		#282a36	
 Current Line		#44475a	
 Foreground		#f8f8f2	
@@ -25,12 +10,12 @@ Pink		#ff79c6
 Purple		#bd93f9
 Red		#ff5555	255 
 Yellow		#f1fa8c	
-
-
 */
 
 html {
-  background-color:#282a36;
+  height: 100%;
+  margin: 0;
+  background-color:#282a36; 
 }
 
 a {
@@ -48,13 +33,16 @@ nav.navbar.navbar-expand.navbar-light {
   background-color: #6272A4;
   color: #F8F8F2;
 }
+
 .navbar h5 {
   color: #F8F8F2;
 }
+
 .navbar-collapse.collapse {
   display: flex;
   justify-content: space-evenly;
 }
+
 .navbar img {
   width: 100px;
 }
@@ -120,7 +108,7 @@ nav.navbar.navbar-expand.navbar-light {
 }
 
 .series-list-filter {
-  padding: 50px 50px;
+  padding: 80px 50px 0 50px;
   color: white;
   height: 100%;
   width: 100%;
@@ -132,7 +120,6 @@ nav.navbar.navbar-expand.navbar-light {
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
-  padding: 50px 0;
   background-color: #282a36;
 }
 
@@ -154,14 +141,19 @@ nav.navbar.navbar-expand.navbar-light {
   border: 2px solid black;
   max-width: 300px;
   overflow: hidden;
-  white-space: nowrap;
+  white-space: normal;
   text-align: center;
   text-decoration: none;
   transition: transform 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .card-body {
   background-color: #6272a4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .card-text {
@@ -169,15 +161,17 @@ nav.navbar.navbar-expand.navbar-light {
   text-decoration: none;
 }
 
-.card-title.h5 {
+.card-title h4 {
   color: #f8f8f2;
   text-decoration: none;
+  margin: 0;
 }
 
 .series-card:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+
 .series-card img {
   width: 300px;
   height: 400px;
@@ -188,9 +182,14 @@ nav.navbar.navbar-expand.navbar-light {
 .paginado {
   display: flex;
   gap: 10px;
-  padding: 10px;
+  padding: 50px;
   color: white;
   justify-content: center;
+}
+
+.paginado h5 {
+  padding-top: 5px;
+  margin: 0;
 }
 
 .paginado button {
@@ -215,6 +214,7 @@ nav.navbar.navbar-expand.navbar-light {
   gap: 20px;
   padding: 20px;
 }
+
 .team-info-card.card {
   background-color: #44475a;
   color: #f8f8f2;
@@ -225,13 +225,16 @@ nav.navbar.navbar-expand.navbar-light {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 200px;
 }
+
 .sidebar-list-watchlists button:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+
 .sidebar-list-btns.btn-group-vertical {
   gap: 10px;
 }
+
 .sidebar-list button {
   width: 200px;
 }
@@ -245,15 +248,24 @@ nav.navbar.navbar-expand.navbar-light {
   object-fit: cover;
   position: relative;
   justify-content: flex-start;
-  padding: 10px;
+  width: 220px;
+  height: 100vh;
   gap: 50px;
 }
 
 .sidebar-list {
   display: flex;
   flex-direction: column;
-  width: 200px;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 20px;
   gap: 10px;
+  height: auto;
+  width: 100%; 
+}
+
+.sidebar-list button {
+  width: 180px;
 }
 
 .sidebar-body {
@@ -262,6 +274,7 @@ nav.navbar.navbar-expand.navbar-light {
   display: flex;
   width: fit-content;
 }
+
 .series-details {
   display: flex;
   flex-direction: column;
@@ -270,6 +283,7 @@ nav.navbar.navbar-expand.navbar-light {
   color: white;
   width: 100vw;
   align-items: center;
+  padding: 20px;
 }
 
 .series-details img {
@@ -280,9 +294,15 @@ nav.navbar.navbar-expand.navbar-light {
 
 .details-main-info {
   display: flex;
-  width: min-content;
+  max-width: 700px;
   padding-top: 40px;
   gap: 20px;
+}
+
+.details-main-info-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .details-main-info-genres {
@@ -302,9 +322,10 @@ nav.navbar.navbar-expand.navbar-light {
   text-align: center;
   max-height: 30px;
 }
+
 .details-general-info {
-  padding: 20px;
-  max-width: 500px;
+  padding-top: 40px;
+  max-width: 700px;
 }
 
 .add-to-list-form {

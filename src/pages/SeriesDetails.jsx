@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import Sidebar from "../components/Sidebar";
 import AddToListForm from "../components/AddToListForm";
 import { Button } from "react-bootstrap";
+import Rating from "../components/Rating";
 
 function SeriesDetails() {
+
   const params = useParams();
   const [serie, setSerie] = useState(null);
   const [serieInWatchlist, setSerieInWatchlist] = useState(false);
@@ -72,15 +73,18 @@ function SeriesDetails() {
             alt="TV Show Image"
           />
           <div className="details-main-info-text">
-            <h1>{serie.name}</h1>
-            <div className="details-main-info-genres">
-              {serie.genres.map((genre) => {
-                return <h6 key={genre.name}>{genre.name}</h6>;
-              })}
+            <div className="details-name-genres">
+              <h1>{serie.name}</h1>
+              <div className="details-main-info-genres">
+                {serie.genres.map((genre) => {
+                  return <h6 key={genre.name}>{genre.name}</h6>;
+                })}
+              </div>
             </div>
+            
             {serieInWatchlist.length > 0 ? (
-              <div>
-                <p>Rating: {serieInWatchlist[0].rating}</p>
+              <>
+                <Rating>{serieInWatchlist[0].rating}</Rating>
                 <p
                   style={{
                     textAlign: "center",
@@ -111,25 +115,25 @@ function SeriesDetails() {
                     ? "Vista"
                     : ""}
                 </p>
-              </div>
+              </>
             ) : null}
           </div>
         </div>
         <div className="details-general-info">
-          <p>Fecha del primer episodio: {serie.first_air_date}</p>
+          <p><strong>Fecha del primer episodio:</strong> {serie.first_air_date}</p>
 
           {serie.next_episode_to_air === null ? (
-            <p>Fecha del final: {serie.last_air_date}</p>
+            <p><strong>Fecha del final:</strong> {serie.last_air_date}</p>
           ) : (
-            <p>Serie en emisión</p>
+            <p><strong>Serie en emisión</strong></p>
           )}
 
-          <p>Fecha del último episodio: {serie.last_air_date}</p>
-          <p>Número de episodios: {serie.number_of_episodes}</p>
-          <p>Número de temporadas: {serie.number_of_seasons}</p>
-          <p>Idioma original: {serie.original_language}</p>
-          <p>
-            Pagina Original Serie: <a href={serie.homepage}>{serie.homepage}</a>{" "}
+          <p><strong>Fecha del último episodio:</strong> {serie.last_air_date}</p>
+          <p><strong>Número de episodios:</strong> {serie.number_of_episodes}</p>
+          <p><strong>Número de temporadas:</strong> {serie.number_of_seasons}</p>
+          <p><strong>Idioma original:</strong> {serie.original_language}</p>
+          <p><strong>
+            Pagina original serie:</strong> <a href={serie.homepage}>{serie.homepage}</a>{" "}
           </p>
 
           <p>{serie.overview}</p>

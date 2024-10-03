@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import Card from "react-bootstrap/Card";
+import Rating from "./Rating";
 
 function SeriesCard({ serie, type }) {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ function SeriesCard({ serie, type }) {
           />
           <Card.Body>
           <Card.Title>
-            <h5>{serie.name}</h5>
+            <h4>{serie.name}</h4>
           </Card.Title>
         </Card.Body>
         </Card>
@@ -34,6 +35,7 @@ function SeriesCard({ serie, type }) {
     return (
       <Card
         onClick={() => navigate(`/series/${serie.id}`)}
+        
         className="series-card"
       >
         <Card.Img
@@ -42,11 +44,11 @@ function SeriesCard({ serie, type }) {
         />
         <Card.Body>
           <Card.Title>
-            <h5>{serie.name}</h5>
+            <h4>{serie.name}</h4>
           </Card.Title>
           <Card.Text>
-            <p> Rating: {serie.rating}</p>
-            <p>{estadoWatchlist}</p>
+            <Rating>{serie.rating}</Rating>
+            <p style={{margin: "0"}}>{estadoWatchlist}</p>
           </Card.Text>
         </Card.Body>
       </Card>

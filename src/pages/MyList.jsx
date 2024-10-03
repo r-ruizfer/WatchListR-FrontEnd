@@ -4,7 +4,7 @@ import Sidebar from "../components/Sidebar";
 import SeriesCard from "../components/SeriesCard";
 import { Button, Offcanvas } from "react-bootstrap";
 
-function MyList({ searchValue, filterValue, setFilterValue }) {
+function MyList({ filterValue, setFilterValue }) {
   const [series, setSeries] = useState(null);
   const [watchlistFilter, setWatchlistFilter] = useState();
   const [showSidebar, setShowSidebar] = useState(false);
@@ -60,7 +60,6 @@ function MyList({ searchValue, filterValue, setFilterValue }) {
         </Offcanvas.Header>
         <Offcanvas.Body style={{backgroundColor: "#44475a"}}>
           <Sidebar
-            type={"myList"}
             filterValue={filterValue}
             setFilterValue={setFilterValue}
             watchlistFilter={watchlistFilter}
@@ -104,7 +103,7 @@ function MyList({ searchValue, filterValue, setFilterValue }) {
 
         <div className="series-list">
           {filteredSeries.length === 0 ? (
-            <h1 className="no-results">No se encontraron resultados</h1>
+            <h1>No se encontraron resultados</h1>
           ) : (
             filteredSeries.map((serie) => (
               <SeriesCard key={serie.id} serie={serie} type={"myList"} />
