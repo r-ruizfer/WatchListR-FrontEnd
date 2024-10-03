@@ -1,16 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
 import SeriesCard from "../components/SeriesCard";
 import Button from "react-bootstrap/Button";
-function SeriesList({
-  searchValue,
-  setSearchValue,
-  filterValue,
-  setFilterValue,
-}) {
-  const [series, setSeries] = useState(null);
+
+function SeriesList({ series, setSeries }) {
+  
   const [pageNumber, setPageNumber] = useState(1);
 
   const showSeries = () => {

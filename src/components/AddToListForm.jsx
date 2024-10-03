@@ -1,19 +1,20 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Modal from "react-modal";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 Modal.setAppElement("#root");
+
 function AddToListForm(props) {
+
   const [modalIsOpen, setIsOpen] = useState(false);
-  //const [name, setName] = useState(props.name);
   const [poster_path, setPosterPath] = useState(props.image);
-  // const [id, setId] = useState(props.id);
   const [rating, setRating] = useState("");
   const [personalWatchlist, setPersonalWatchlist] = useState(null);
   const handleRating = (e) => setRating(e.target.value);
   const handlePersonalWatchlist = (e) => setPersonalWatchlist(e.target.value);
   const navigate = useNavigate();
+
   const customStyles = {
     content: {
       top: "50%",
@@ -24,15 +25,17 @@ function AddToListForm(props) {
       transform: "translate(-50%, -50%)",
     },
   };
-  const subtitle = useRef(null);
+
   function openModal() {
     setIsOpen(true);
   }
-  function afterOpenModal() {}
+
   function closeModal() {
     setIsOpen(false);
   }
+  
   const handleSubmit = async (e) => {
+
     e.preventDefault();
     const newSerie = {
       name: props.name,
@@ -42,6 +45,7 @@ function AddToListForm(props) {
       rating,
       personalWatchlist,
     };
+
     try {
       await axios.post(
         `${import.meta.env.VITE_SERVER_URL}/personalWatchlist`,
@@ -56,7 +60,9 @@ function AddToListForm(props) {
       console.log(error);
     }
   };
+
   const handleUpdate = async (e) => {
+
     e.preventDefault();
     const updatedSerie = {
       name: props.name,
@@ -66,6 +72,7 @@ function AddToListForm(props) {
       rating,
       personalWatchlist,
     };
+
     try {
       await axios.patch(
         `${import.meta.env.VITE_SERVER_URL}/personalWatchlist/${props.id}`,
@@ -80,6 +87,7 @@ function AddToListForm(props) {
       console.log(error);
     }
   };
+
   if (props.type === "add") {
     return (
       <>
@@ -94,9 +102,9 @@ function AddToListForm(props) {
         >
           Añadir a Lista
         </Button>
+        
         <Modal
           isOpen={modalIsOpen}
-          onAfterOpen={afterOpenModal}
           onRequestClose={closeModal}
           style={customStyles}
           contentLabel="Example Modal"
@@ -161,7 +169,6 @@ function AddToListForm(props) {
         </Button>
         <Modal
           isOpen={modalIsOpen}
-          onAfterOpen={afterOpenModal}
           onRequestClose={closeModal}
           style={customStyles}
           contentLabel="Example Modal"

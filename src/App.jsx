@@ -12,6 +12,7 @@ import MyNavbar from "./components/myNavbar.jsx";
 import SearchResults from "./pages/SearchResults.jsx";
 
 function App() {
+  const [series, setSeries] = useState(null);
   const [searchValue, setSearchValue] = useState("");
   const [filterValue, setFilterValue] = useState("");
 
@@ -19,11 +20,13 @@ function App() {
     <>
       <MyNavbar searchValue={searchValue} setSearchValue={setSearchValue} />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage series={series} setSeries={setSeries}/>} />
         <Route
           path="/series"
           element={
             <SeriesList
+              series={series}
+              setSeries={setSeries}
               searchValue={searchValue}
               setSearchValue={setSearchValue}
               filterValue={filterValue}

@@ -29,6 +29,10 @@ Yellow		#f1fa8c
 
 */
 
+html {
+  background-color:#282a36;
+}
+
 a {
   text-decoration: none;
   color: #f8f8f2;
@@ -51,10 +55,50 @@ a {
   width: 100px;
 }
 
+.homepage {
+  background-color:#282a36;
+  color: #f8f8f2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 100px;
+  gap: 40px;
+}
+
+.homepage a {
+  text-decoration: none;
+  color: #f8f8f2; 
+}
+
+.carousel {
+  width: 300px;
+  height: 400px;
+  overflow: hidden;
+}
+
+.carousel-img {
+  width: 300px;
+  height: 400px;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.homepage-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.homepage-btns button {
+  padding: 20px;
+  border: none;
+}
+
 .series-list-container {
   background-color: #282a36;
   height: 100%;
-  align-items: center;
 }
 
 .series-list {
@@ -63,8 +107,12 @@ a {
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
-  padding: 50px 0;
+  padding: 50px 50px;
   background-color: #282a36;
+}
+
+.series-card.card {
+  height: 550px;
 }
 
 .series-card {
@@ -80,6 +128,7 @@ a {
 .card-body {
   background-color: #6272a4;
 }
+
 .card-text {
   color: #f8f8f2;
   text-decoration: none;
@@ -156,6 +205,7 @@ a {
   padding: 10px;
   gap: 50px;
 }
+
 .sidebar-list {
   display: flex;
   flex-direction: column;
@@ -166,6 +216,7 @@ a {
 .sidebar-body {
   height: 100%;
   display: flex;
+  width: fit-content;
 }
 .series-details {
   display: flex;

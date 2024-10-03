@@ -85,7 +85,7 @@ function Sidebar({
           <h4>Filtrar por lista:</h4>
           <ButtonGroup vertical>
             <Button
-              style={{ backgroundColor: "	#bd93f9", color: "#282a36" }}
+              style={{ backgroundColor: "	#bd93f9", color: "#282a36", border: "none"}}
               size="lg"
               value=""
               onClick={handleWatchlistFilter}
@@ -93,7 +93,7 @@ function Sidebar({
               Todas las listas
             </Button>
             <Button
-              style={{ backgroundColor: "	#50fa7b", color: "#282a36" }}
+              style={{ backgroundColor: "	#50fa7b", color: "#282a36", border: "none"}}
               size="lg"
               value="wantToWatch"
               onClick={handleWatchlistFilter}
@@ -101,7 +101,7 @@ function Sidebar({
               Quiero Verla
             </Button>
             <Button
-              style={{ backgroundColor: "	#f1fa8c", color: "#282a36" }}
+              style={{ backgroundColor: "	#f1fa8c", color: "#282a36", border: "none"}}
               size="lg"
               value="watching"
               onClick={handleWatchlistFilter}
@@ -109,7 +109,7 @@ function Sidebar({
               Viendo
             </Button>
             <Button
-              style={{ backgroundColor: "	#ff5555", color: "#282a36" }}
+              style={{ backgroundColor: "	#ff5555", color: "#282a36", border: "none"}}
               size="lg"
               value="watched"
               onClick={handleWatchlistFilter}
