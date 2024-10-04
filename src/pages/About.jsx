@@ -5,7 +5,7 @@ function About() {
     
     <div className="about">
       
-      <h2>Miembros del equipo</h2>
+      <h1>Miembros del equipo</h1>
     
       <div className="team-member-card">
         <TeamInfo
@@ -21,6 +21,9 @@ function About() {
           linkedin={'https://www.linkedin.com/in/ruben-ruiz-5b451630b/'}
         />
       </div>
+
+      <h4 style={{textAlign: "center", width: "800px"}}>Unimos fuerzas para crear WatchlistR, una plataforma diseñada para que organizar y disfrutar tus series sea más fácil que nunca.
+      </h4>
     </div>
   )
 }
