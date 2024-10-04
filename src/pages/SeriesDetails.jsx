@@ -28,30 +28,38 @@ function SeriesDetails() {
       .then((response) => {
         setSerie(response.data);
         return axios.get(
-          `http://localhost:5000/personalWatchlist?id=${response.data.id}`
+          `${import.meta.env.VITE_SERVER_URL}/personalWatchlist?id=${
+            response.data.id
+          }`
         );
       })
       .then((response) => {
         setSerieInWatchlist(response.data);
       })
       .catch((error) => {
-        navigate("/Error")
+        navigate("/Error");
         console.error(error);
       });
   }, []);
 
   function handleDelete() {
     axios
-      .delete(`http://localhost:5000/personalWatchlist/${serie.id}`)
+      .delete(`${import.meta.env.VITE_SERVER_URL}/personalWatchlist/${serie.id}`)
       .then(navigate("/mylist"));
   }
 
   if (serie === null) {
     return (
-      <div style={{ color: "#f1fa8c", backgroundColor: "#282a36	", padding:"100px 50%" }}>
+      <div
+        style={{
+          color: "#f1fa8c",
+          backgroundColor: "#282a36	",
+          padding: "100px 50%",
+        }}
+      >
         <Spinner
           animation="border"
-          style={{width:"150px", height:"150px"}}
+          style={{ width: "150px", height: "150px" }}
         />
         <h2>...Cargando...</h2>
       </div>
