@@ -9,9 +9,9 @@ function AddToListForm(props) {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [poster_path, setPosterPath] = useState(props.image);
   const [rating, setRating] = useState("");
-  const [personalWatchlist, setPersonalWatchlist] = useState(null);
+  const [status, setStatus] = useState(null);
   const handleRating = (e) => setRating(e.target.value);
-  const handlePersonalWatchlist = (e) => setPersonalWatchlist(e.target.value);
+  const handleStatus = (e) => setStatus(e.target.value);
   const navigate = useNavigate();
 
   function openModal() {
@@ -30,16 +30,16 @@ function AddToListForm(props) {
       id: props.id,
       genres: props.genres,
       rating,
-      personalWatchlist,
+      status,
     };
 
     try {
       await axios.post(
-        `${import.meta.env.VITE_SERVER_URL}/personalWatchlist`,
+        `${import.meta.env.VITE_SERVER_URL}/personalWatchlists`,
         newSerie
       );
       const response = await axios.get(
-        `${import.meta.env.VITE_SERVER_URL}/personalWatchlist?id=${props.id}`
+        `${import.meta.env.VITE_SERVER_URL}/personalWatchlists?id=${props.id}`
       );
       props.setSerieInWatchlist(response.data);
       navigate("/mylist");
@@ -56,16 +56,16 @@ function AddToListForm(props) {
       id: props.id,
       genres: props.genres,
       rating,
-      personalWatchlist,
+      status,
     };
 
     try {
       await axios.patch(
-        `${import.meta.env.VITE_SERVER_URL}/personalWatchlist/${props.id}`,
+        `${import.meta.env.VITE_SERVER_URL}/personalWatchlists/${props.id}`,
         updatedSerie
       );
       const response = await axios.get(
-        `${import.meta.env.VITE_SERVER_URL}/personalWatchlist?id=${props.id}`
+        `${import.meta.env.VITE_SERVER_URL}/personalWatchlists?id=${props.id}`
       );
       props.setSerieInWatchlist(response.data);
       closeModal();
@@ -103,9 +103,9 @@ function AddToListForm(props) {
               <Form.Group>
                 <Form.Label>Añadir a lista</Form.Label>
                 <Form.Select
-                  name="personalWatchlist"
-                  onChange={handlePersonalWatchlist}
-                  value={personalWatchlist}
+                  name="status"
+                  onChange={handleStatus}
+                  value={status}
                   style={{backgroundColor: "#282a36", color: "#f8f8f2"}}
                 >
                   <option value="-">---</option>
@@ -118,8 +118,8 @@ function AddToListForm(props) {
               <Form.Group
                 style={{
                   display:
-                    personalWatchlist === "watching" ||
-                    personalWatchlist === "watched"
+                    status === "watching" ||
+                    status === "watched"
                       ? "block"
                       : "none",
                 }}
@@ -142,7 +142,7 @@ function AddToListForm(props) {
                 </Form.Select>
               </Form.Group>
   
-              <Button style={{backgroundColor: "#8be9fd", color: "black", fontWeight: "bold"}} type="submit" disabled={personalWatchlist === null || personalWatchlist === "-"}>Añadir</Button>
+              <Button style={{backgroundColor: "#8be9fd", color: "black", fontWeight: "bold"}} type="submit" disabled={status === null || status === "-"}>Añadir</Button>
             </Form>
           </Modal.Body>
         </Modal>
@@ -177,8 +177,8 @@ function AddToListForm(props) {
               <Form.Group>
                 <Form.Label>Actualizar Estado</Form.Label>
                 <Form.Select
-                  name="personalWatchlist"
-                  onChange={handlePersonalWatchlist}
+                  name="status"
+                  onChange={handleStatus}
                   style={{backgroundColor: "#282a36", color: "#f8f8f2"}}
                 >
                   <option value="-">---</option>
@@ -191,8 +191,8 @@ function AddToListForm(props) {
               <Form.Group
                 style={{
                   display:
-                    personalWatchlist === "watching" ||
-                    personalWatchlist === "watched"
+                    status === "watching" ||
+                    status === "watched"
                       ? "block"
                       : "none",
                 }}
@@ -214,7 +214,7 @@ function AddToListForm(props) {
                 </Form.Select>
               </Form.Group>
   
-              <Button style={{backgroundColor: "#8be9fd", color: "black", fontWeight: "bold", border: "none"}} type="submit" disabled={personalWatchlist === null || personalWatchlist === "-"}>Actualizar</Button>
+              <Button style={{backgroundColor: "#8be9fd", color: "black", fontWeight: "bold", border: "none"}} type="submit" disabled={status === null || status === "-"}>Actualizar</Button>
             </Form>
           </Modal.Body>
         </Modal>

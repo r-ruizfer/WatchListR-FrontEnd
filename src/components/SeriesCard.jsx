@@ -7,11 +7,11 @@ function SeriesCard({ serie, type }) {
 
   let estadoWatchlist;
 
-  if (serie.personalWatchlist === "wantToWatch") {
+  if (serie.status === "wantToWatch") {
     estadoWatchlist = "Quiero verla";
-  } else if (serie.personalWatchlist === "watching") {
+  } else if (serie.status === "watching") {
     estadoWatchlist = "Viendo";
-  } else if (serie.personalWatchlist === "watched") {
+  } else if (serie.status === "watched") {
     estadoWatchlist = "Vista";
   }
 

@@ -28,7 +28,7 @@ function SeriesDetails() {
       .then((response) => {
         setSerie(response.data);
         return axios.get(
-          `${import.meta.env.VITE_SERVER_URL}/personalWatchlist?id=${
+          `${import.meta.env.VITE_SERVER_URL}/personalWatchlists?id=${
             response.data.id
           }`
         );
@@ -44,7 +44,7 @@ function SeriesDetails() {
 
   function handleDelete() {
     axios
-      .delete(`${import.meta.env.VITE_SERVER_URL}/personalWatchlist/${serie.id}`)
+      .delete(`${import.meta.env.VITE_SERVER_URL}/personalWatchlists/${serie.id}`)
       .then(navigate("/mylist"));
   }
 
@@ -104,25 +104,25 @@ function SeriesDetails() {
                     borderRadius: "5px",
                     fontWeight: "bold",
                     backgroundColor:
-                      serieInWatchlist[0].personalWatchlist === "wantToWatch"
+                      serieInWatchlist[0].status === "wantToWatch"
                         ? "#50fa7b"
-                        : serieInWatchlist[0].personalWatchlist === "watching"
+                        : serieInWatchlist[0].status === "watching"
                         ? "#f1fa8c"
-                        : serieInWatchlist[0].personalWatchlist === "watched"
+                        : serieInWatchlist[0].status === "watched"
                         ? "	#ff5555"
                         : "",
                     color:
-                      serieInWatchlist[0].personalWatchlist === "watching" ||
-                      serieInWatchlist[0].personalWatchlist === "watched"
+                      serieInWatchlist[0].status === "watching" ||
+                      serieInWatchlist[0].status === "watched"
                         ? "black"
                         : "white",
                   }}
                 >
-                  {serieInWatchlist[0].personalWatchlist === "wantToWatch"
+                  {serieInWatchlist[0].status === "wantToWatch"
                     ? "Quiero Verla"
-                    : serieInWatchlist[0].personalWatchlist === "watching"
+                    : serieInWatchlist[0].status === "watching"
                     ? "Viendo"
-                    : serieInWatchlist[0].personalWatchlist === "watched"
+                    : serieInWatchlist[0].status === "watched"
                     ? "Vista"
                     : ""}
                 </p>

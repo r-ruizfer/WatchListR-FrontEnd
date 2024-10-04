@@ -16,7 +16,7 @@ function MyList({ filterValue, setFilterValue }) {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_SERVER_URL}/personalWatchlist`)
+      .get(`${import.meta.env.VITE_SERVER_URL}/personalWatchlists`)
       .then((response) => {
         setSeries(response.data);
       })
@@ -49,7 +49,7 @@ function MyList({ filterValue, setFilterValue }) {
       if (!watchlistFilter) {
         return true;
       } else {
-        return serie.personalWatchlist === watchlistFilter;
+        return serie.status === watchlistFilter;
       }
     })
     .filter((serie) => {
