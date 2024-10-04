@@ -12,10 +12,16 @@ Red		#ff5555	255
 Yellow		#f1fa8c	
 */
 
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
 html {
   height: 100%;
   margin: 0;
-  background-color:#282a36; 
+  background-color: #282a36;
+}
+
+* {
+  font-family: "Roboto", sans-serif;
 }
 
 a {
@@ -30,12 +36,12 @@ nav.navbar.navbar-expand.navbar-light {
 .navbar {
   display: flex;
   flex-direction: row;
-  background-color: #6272A4;
-  color: #F8F8F2;
+  background-color: #6272a4;
+  color: #f8f8f2;
 }
 
 .navbar h5 {
-  color: #F8F8F2;
+  color: #f8f8f2;
 }
 
 .navbar-collapse.collapse {
@@ -48,7 +54,7 @@ nav.navbar.navbar-expand.navbar-light {
 }
 
 .homepage {
-  background-color:#282a36;
+  background-color: #282a36;
   color: #f8f8f2;
   display: flex;
   flex-direction: column;
@@ -61,7 +67,7 @@ nav.navbar.navbar-expand.navbar-light {
 
 .homepage a {
   text-decoration: none;
-  color: #f8f8f2; 
+  color: #f8f8f2;
 }
 
 .carousel {
@@ -88,7 +94,6 @@ nav.navbar.navbar-expand.navbar-light {
   border: none;
   transition: transform 0.1s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
 }
 
 .homepage-btns button:hover {
@@ -195,7 +200,7 @@ nav.navbar.navbar-expand.navbar-light {
 .paginado button {
   background-color: #8be9fd;
   border: none;
-  color: #282a36
+  color: #282a36;
 }
 
 .team-info-btns {
@@ -211,8 +216,8 @@ nav.navbar.navbar-expand.navbar-light {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  padding: 20px;
+  gap: 100px;
+  padding: 100px 0;
 }
 
 .team-info-card.card {
@@ -261,7 +266,7 @@ nav.navbar.navbar-expand.navbar-light {
   padding-top: 20px;
   gap: 10px;
   height: auto;
-  width: 100%; 
+  width: 100%;
 }
 
 .sidebar-list button {
@@ -359,15 +364,39 @@ nav.navbar.navbar-expand.navbar-light {
   padding: 100px;
   background-color: #282a36;
 }
-
 .error-page img {
   width: 500px;
 }
-
 .error-page button {
   margin: 100px;
   padding: 20px;
-  background-color: #ff79c6	;
+  background-color: #ff79c6;
   color: black;
-  border: none
+  border: none;
+}
+
+@media (max-width: 768px) {
+  .error-page {
+    padding: 50px;
+  }
+  .error-page img {
+    width: 100%;
+    max-width: 300px;
+  }
+  .error-page button {
+    margin: 50px;
+    padding: 15px;
+  }
+}
+@media (max-width: 480px) {
+  .error-page {
+    padding: 20px;
+  }
+  .error-page img {
+    max-width: 200px;
+  }
+  .error-page button {
+    margin: 30px;
+    padding: 10px;
+  }
 }

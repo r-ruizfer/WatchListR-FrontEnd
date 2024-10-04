@@ -4,9 +4,9 @@ import axios from "axios";
 import AddToListForm from "../components/AddToListForm";
 import { Button } from "react-bootstrap";
 import Rating from "../components/Rating";
+import Spinner from "react-bootstrap/Spinner";
 
 function SeriesDetails() {
-
   const params = useParams();
   const [serie, setSerie] = useState(null);
   const [serieInWatchlist, setSerieInWatchlist] = useState(false);
@@ -35,6 +35,7 @@ function SeriesDetails() {
         setSerieInWatchlist(response.data);
       })
       .catch((error) => {
+        navigate("/Error")
         console.error(error);
       });
   }, []);
@@ -46,23 +47,25 @@ function SeriesDetails() {
   }
 
   if (serie === null) {
-    return <h3>...cargando</h3>;
+    return (
+      <div style={{ color: "#f1fa8c", backgroundColor: "#282a36	", padding:"100px 50%" }}>
+        <Spinner
+          animation="border"
+          style={{width:"150px", height:"150px"}}
+        />
+        <h2>...Cargando...</h2>
+      </div>
+    );
   }
 
   return (
     <div className="sidebar-body">
       <div className="series-details">
         <div className="back-btns">
-          <Button
-            onClick={() => navigate("/series")}
-            variant="outline-danger"
-          >
+          <Button onClick={() => navigate("/series")} variant="outline-danger">
             Volver al listado
           </Button>
-          <Button
-            onClick={() => navigate("/mylist")}
-            variant="outline-success"
-          >
+          <Button onClick={() => navigate("/mylist")} variant="outline-success">
             Volver a mis series
           </Button>
         </div>
@@ -81,7 +84,7 @@ function SeriesDetails() {
                 })}
               </div>
             </div>
-            
+
             {serieInWatchlist.length > 0 ? (
               <>
                 <Rating>{serieInWatchlist[0].rating}</Rating>
@@ -120,20 +123,35 @@ function SeriesDetails() {
           </div>
         </div>
         <div className="details-general-info">
-          <p><strong>Fecha del primer episodio:</strong> {serie.first_air_date}</p>
+          <p>
+            <strong>Fecha del primer episodio:</strong> {serie.first_air_date}
+          </p>
 
           {serie.next_episode_to_air === null ? (
-            <p><strong>Fecha del final:</strong> {serie.last_air_date}</p>
+            <p>
+              <strong>Fecha del final:</strong> {serie.last_air_date}
+            </p>
           ) : (
-            <p><strong>Serie en emisión</strong></p>
+            <p>
+              <strong>Serie en emisión</strong>
+            </p>
           )}
 
-          <p><strong>Fecha del último episodio:</strong> {serie.last_air_date}</p>
-          <p><strong>Número de episodios:</strong> {serie.number_of_episodes}</p>
-          <p><strong>Número de temporadas:</strong> {serie.number_of_seasons}</p>
-          <p><strong>Idioma original:</strong> {serie.original_language}</p>
-          <p><strong>
-            Pagina original serie:</strong> <a href={serie.homepage}>{serie.homepage}</a>{" "}
+          <p>
+            <strong>Fecha del último episodio:</strong> {serie.last_air_date}
+          </p>
+          <p>
+            <strong>Número de episodios:</strong> {serie.number_of_episodes}
+          </p>
+          <p>
+            <strong>Número de temporadas:</strong> {serie.number_of_seasons}
+          </p>
+          <p>
+            <strong>Idioma original:</strong> {serie.original_language}
+          </p>
+          <p>
+            <strong>Pagina original serie:</strong>{" "}
+            <a href={serie.homepage}>{serie.homepage}</a>{" "}
           </p>
 
           <p>{serie.overview}</p>

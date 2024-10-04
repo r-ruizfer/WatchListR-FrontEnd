@@ -10,6 +10,7 @@ import MyList from "./pages/MyList.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import MyNavbar from "./components/myNavbar.jsx";
 import SearchResults from "./pages/SearchResults.jsx";
+import Error500Page from "./pages/Error500.jsx";
 
 function App() {
   const [series, setSeries] = useState(null);
@@ -48,6 +49,7 @@ function App() {
           }
         />
         <Route path="*" element={<ErrorPage />} />
+        <Route path="/Error" element={<Error500Page/>}/>
         <Route
           path="/series/searchResults/:query"
           element={
